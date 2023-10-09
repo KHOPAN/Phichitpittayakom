@@ -17,4 +17,5 @@
     <string name="searchStudentByStudentIdentifier">Search student by student identifier</string>
     <string name="searchStudentByNationalIdentifier">Search student by national identifier</string>
     <string name="searchStudentByNameParts">Search student by name parts</string>
+    <string name="search">Search</string>
 </resources>

@@ -17,4 +17,5 @@
     <string name="searchStudentByStudentIdentifier">ค้นหานักเรียนโดยเลขประจำตัวนักเรียน</string>
     <string name="searchStudentByNationalIdentifier">ค้นหานักเรียนโดยเลขบัตรประจำตัวประชาชน</string>
     <string name="searchStudentByNameParts">ค้นหานักเรียนด้วยชื่อหรือนามสกุล</string>
+    <string name="search">ค้นหา</string>
 </resources>
