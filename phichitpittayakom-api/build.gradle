@@ -6,7 +6,7 @@ android {
     compileSdk target_sdk
 
     defaultConfig {
-        minSdk 1
+        minSdk 24
         targetSdk target_sdk
         versionCode 1
         versionName "1.0.0"
@@ -16,4 +16,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
+
+dependencies {
+    implementation("org.jsoup:jsoup:1.16.1")
 }
