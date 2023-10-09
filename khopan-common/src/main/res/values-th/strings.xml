@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<string name="noInternetConnection">ไม่มีการเชื่อมต่อ</string>
+	<string name="retry">ลองใหม่</string>
+	<string name="loading">กำลังโหลด</string>
+</resources>
