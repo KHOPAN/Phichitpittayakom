@@ -1,5 +1,11 @@
 <resources
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
+    <!-- Common Information -->
     <string name="applicationName">Phichitpittayakom</string>
+
+    <!-- PhichitpittayakomApplication -->
+    <string name="title">Phichitpittayakom</string>
+    <string name="subtitle">School</string>
+    <string name="collapseTitle">Phichitpittayakom School</string>
 </resources>
