@@ -8,4 +8,13 @@
     <string name="title">โรงเรียนพิจิตรพิทยาคม</string>
     <string name="subtitle">จังหวัดพิจิตร</string>
     <string name="collapseTitle">โรงเรียนพิจิตรพิทยาคม</string>
+    <string name="searchStudentBy">ค้นหานักเรียนโดย</string>
+    <string name="studentIdentifier">เลขประจำตัวนักเรียน</string>
+    <string name="nationalIdentifier">เลขบัตรประจำตัวประชาชน</string>
+    <string name="nameParts">ชื่อหรือนามสกุล</string>
+
+    <!-- SearchStudentActivity -->
+    <string name="searchStudentByStudentIdentifier">ค้นหานักเรียนโดยเลขประจำตัวนักเรียน</string>
+    <string name="searchStudentByNationalIdentifier">ค้นหานักเรียนโดยเลขบัตรประจำตัวประชาชน</string>
+    <string name="searchStudentByNameParts">ค้นหานักเรียนด้วยชื่อหรือนามสกุล</string>
 </resources>

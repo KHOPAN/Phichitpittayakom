@@ -8,4 +8,13 @@
     <string name="title">Phichitpittayakom</string>
     <string name="subtitle">School</string>
     <string name="collapseTitle">Phichitpittayakom School</string>
+    <string name="searchStudentBy">Search student by</string>
+    <string name="studentIdentifier">Student identifier</string>
+    <string name="nationalIdentifier">National identifier</string>
+    <string name="nameParts">Name parts</string>
+
+    <!-- SearchStudentActivity -->
+    <string name="searchStudentByStudentIdentifier">Search student by student identifier</string>
+    <string name="searchStudentByNationalIdentifier">Search student by national identifier</string>
+    <string name="searchStudentByNameParts">Search student by name parts</string>
 </resources>
