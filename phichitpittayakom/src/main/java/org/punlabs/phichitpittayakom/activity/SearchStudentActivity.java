@@ -22,8 +22,10 @@ import com.khopan.api.common.utils.ActivityUtils;
 import com.khopan.api.common.utils.LayoutUtils;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
+import org.punlabs.phichitpittayakom.fragment.ListFragment;
 import org.punlabs.phichitpittayakom.fragment.StudentFragment;
 
+import java.util.List;
 import java.util.Optional;
 
 import dev.oneuiproject.oneui.widget.RoundLinearLayout;
@@ -65,25 +67,28 @@ public class SearchStudentActivity extends AppCompatActivity {
 
 		String title = this.getString(resource);
 		FrameLayout frameLayout = ActivityUtils.initializeForFragment(this, title, title, this.getString(R.string.collapseTitle), true);
-		NestedScrollView scrollView = new NestedScrollView(this);
-		scrollView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-		scrollView.setFillViewport(true);
-		scrollView.setOverScrollMode(NestedScrollView.OVER_SCROLL_ALWAYS);
-		LayoutUtils.forceEnableScrollbar(scrollView, true, false);
-		frameLayout.addView(scrollView);
 		LinearLayout linearLayout = new LinearLayout(this);
+		linearLayout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 		linearLayout.setOrientation(LinearLayout.VERTICAL);
-		scrollView.addView(linearLayout);
+		frameLayout.addView(linearLayout);
+		NestedScrollView scrollView = new NestedScrollView(this);
+		scrollView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+		scrollView.setOverScrollMode(NestedScrollView.OVER_SCROLL_NEVER);
+		linearLayout.addView(scrollView);
+		LinearLayout scrollLayout = new LinearLayout(this);
+		LayoutUtils.setLayoutTransition(scrollLayout);
+		scrollLayout.setOrientation(LinearLayout.VERTICAL);
+		scrollView.addView(scrollLayout);
 		Separator separator = new Separator(this);
 		String search = this.getString(R.string.search);
 		separator.setText(search);
-		linearLayout.addView(separator);
+		scrollLayout.addView(separator);
 		RoundLinearLayout searchLayout = new RoundLinearLayout(this);
 		LayoutUtils.setLayoutTransition(searchLayout);
 		searchLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		searchLayout.setOrientation(RoundLinearLayout.VERTICAL);
 		searchLayout.setBackgroundColor(this.getColor(R.color.oui_background_color));
-		linearLayout.addView(searchLayout);
+		scrollLayout.addView(searchLayout);
 		LinearLayout searchView = new LinearLayout(this);
 		LayoutUtils.setLayoutTransition(searchView);
 		LinearLayout.LayoutParams searchViewParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -174,12 +179,20 @@ public class SearchStudentActivity extends AppCompatActivity {
 	}
 
 	private void nameParts(String searchQuery) {
+		List<Student> studentList = Phichitpittayakom.student.findStudentsByName(searchQuery);
 
+		if(studentList.isEmpty()) {
+			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
+			return;
+		}
+
+		this.setFragment(new ListFragment<>(studentList, (context, student) -> student.getName().toString(), (context, student) -> "", (context, student) -> {}));
 	}
 
 	private void setFragment(Fragment fragment) {
 		this.getSupportFragmentManager()
 				.beginTransaction()
+				.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
 				.replace(this.fragmentLayoutIdentifier, fragment)
 				.commit();
 	}

@@ -34,4 +34,7 @@
     <string name="mathayomsuksa">ระดับชั้น</string>
     <string name="classRoomNumber">ห้อง</string>
     <string name="number">เลขที่</string>
+
+    <!-- ListFragment -->
+    <string name="foundSearchResults">แสดง %d ผลการค้นหา</string>
 </resources>

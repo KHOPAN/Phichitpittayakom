@@ -34,4 +34,7 @@
     <string name="mathayomsuksa">Mathayomsuksa</string>
     <string name="classRoomNumber">Class room number</string>
     <string name="number">Number</string>
+
+    <!-- ListFragment -->
+    <string name="foundSearchResults">Found %d search results</string>
 </resources>

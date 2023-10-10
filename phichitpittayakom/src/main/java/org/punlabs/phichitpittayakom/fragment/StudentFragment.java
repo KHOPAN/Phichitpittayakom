@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 
 import com.khopan.api.common.card.CardBuilder;
 import com.khopan.api.common.fragment.ContextedFragment;
@@ -29,9 +30,13 @@ public class StudentFragment extends ContextedFragment {
 
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle bundle) {
-		LinearLayout linearLayout = (LinearLayout) view;
+		NestedScrollView scrollView = (NestedScrollView) view;
+		scrollView.setFillViewport(true);
+		scrollView.setOverScrollMode(NestedScrollView.OVER_SCROLL_ALWAYS);
+		LinearLayout linearLayout = new LinearLayout(this.context);
 		LayoutUtils.setLayoutTransition(linearLayout);
 		linearLayout.setOrientation(LinearLayout.VERTICAL);
+		scrollView.addView(linearLayout);
 		CardBuilder builder = new CardBuilder(linearLayout, this.context);
 
 		if(this.showResult) {
@@ -58,6 +63,6 @@ public class StudentFragment extends ContextedFragment {
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup group, @Nullable Bundle bundle) {
-		return new LinearLayout(this.context);
+		return new NestedScrollView(this.context);
 	}
 }
