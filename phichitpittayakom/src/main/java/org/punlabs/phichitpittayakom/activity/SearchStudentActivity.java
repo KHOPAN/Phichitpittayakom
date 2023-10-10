@@ -30,6 +30,8 @@ import dev.oneuiproject.oneui.widget.RoundLinearLayout;
 import dev.oneuiproject.oneui.widget.Separator;
 import th.ac.phichitpittayakom.Phichitpittayakom;
 import th.ac.phichitpittayakom.Student;
+import th.ac.phichitpittayakom.nationalid.NationalID;
+import th.ac.phichitpittayakom.nationalid.NationalIDParser;
 
 public class SearchStudentActivity extends AppCompatActivity {
 	private int mode;
@@ -155,7 +157,20 @@ public class SearchStudentActivity extends AppCompatActivity {
 	}
 
 	private void national(String searchQuery) {
+		NationalID nationalIdentifier = NationalIDParser.parse(searchQuery);
 
+		if(!nationalIdentifier.isValid()) {
+			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.invalidNationalIdentifier)));
+			return;
+		}
+
+		Optional<Student> optional = Phichitpittayakom.student.findStudentByNationalID(nationalIdentifier);
+
+		if(optional.isPresent()) {
+			this.setFragment(new StudentFragment(optional.get(), true));
+		} else {
+			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
+		}
 	}
 
 	private void nameParts(String searchQuery) {

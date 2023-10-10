@@ -22,6 +22,7 @@
     <string name="emptySearchField">Empty search field</string>
     <string name="invaildStudentIdentifier">Invalid student identifier</string>
     <string name="noSearchResult">No search result</string>
+    <string name="invalidNationalIdentifier">Invalid national identifier</string>
 
     <!-- StudentFragment -->
     <string name="foundOneSearchResult">Found 1 search result</string>

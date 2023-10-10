@@ -22,6 +22,7 @@
     <string name="emptySearchField">ช่องค้นหาว่างเปล่า</string>
     <string name="invaildStudentIdentifier">เลขประจำตัวนักเรียนไม่ถูกต้อง</string>
     <string name="noSearchResult">ไม่มีผลการค้นหา</string>
+    <string name="invalidNationalIdentifier">เลขบัตรประจำตัวประชาชนไม่ถูกต้อง</string>
 
     <!-- StudentFragment -->
     <string name="foundOneSearchResult">แสดง 1 ผลการค้นหา</string>
