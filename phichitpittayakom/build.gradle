@@ -47,5 +47,6 @@ dependencies {
     implementation("io.github.oneuiproject.sesl:recyclerview:$recyclerview")
     implementation("io.github.oneuiproject:icons:$icons")
     implementation project(path: ":khopan-common")
+    implementation project(path: ':phichitpittayakom-api')
     implementation project(path: ":lib")
 }
