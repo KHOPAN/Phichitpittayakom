@@ -18,4 +18,19 @@
     <string name="searchStudentByNationalIdentifier">Search student by national identifier</string>
     <string name="searchStudentByNameParts">Search student by name parts</string>
     <string name="search">Search</string>
+    <string name="loading">Loading</string>
+    <string name="emptySearchField">Empty search field</string>
+    <string name="invaildStudentIdentifier">Invalid student identifier</string>
+    <string name="noSearchResult">No search result</string>
+
+    <!-- StudentFragment -->
+    <string name="foundOneSearchResult">Found 1 search result</string>
+    <string name="namePrefix">Name prefix</string>
+    <string name="firstName">First name</string>
+    <string name="middleName">Middle name</string>
+    <string name="lastName">Last name</string>
+    <string name="gradeNumber">%d</string>
+    <string name="mathayomsuksa">Mathayomsuksa</string>
+    <string name="classRoomNumber">Class room number</string>
+    <string name="number">Number</string>
 </resources>

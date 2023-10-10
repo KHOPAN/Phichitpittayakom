@@ -2,8 +2,10 @@ package org.punlabs.phichitpittayakom.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -12,29 +14,42 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
 
+import com.khopan.api.common.fragment.LoadingFragment;
+import com.khopan.api.common.fragment.SingleCenterTextFragment;
 import com.khopan.api.common.utils.ActivityUtils;
 import com.khopan.api.common.utils.LayoutUtils;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
+import org.punlabs.phichitpittayakom.fragment.StudentFragment;
+
+import java.util.Optional;
+
 import dev.oneuiproject.oneui.widget.RoundLinearLayout;
 import dev.oneuiproject.oneui.widget.Separator;
+import th.ac.phichitpittayakom.Phichitpittayakom;
+import th.ac.phichitpittayakom.Student;
 
 public class SearchStudentActivity extends AppCompatActivity {
+	private int mode;
+	private EditText searchField;
+	private int fragmentLayoutIdentifier;
+
 	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-		int mode = 0;
+		this.mode = 0;
 		Intent intent = this.getIntent();
 		Bundle extras = intent.getExtras();
 
 		if(extras != null) {
-			mode = extras.getInt("mode");
+			this.mode = extras.getInt("mode");
 		}
 
 		int resource;
 
-		switch(mode) {
+		switch(this.mode) {
 		case 1:
 			resource = R.string.searchStudentByNationalIdentifier;
 			break;
@@ -85,13 +100,72 @@ public class SearchStudentActivity extends AppCompatActivity {
 		searchButton.setText(search);
 		searchButton.setFocusable(true);
 		searchButton.setClickable(true);
-		searchButton.setOnClickListener(view -> {});
+		searchButton.setOnClickListener(view -> this.search());
 		searchView.addView(searchButton);
-		EditText searchField = new EditText(this);
+		this.searchField = new EditText(this);
 		LinearLayout.LayoutParams searchFieldParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		searchFieldParams.weight = 1;
 		searchFieldParams.rightMargin = margin;
-		searchField.setLayoutParams(searchFieldParams);
-		searchView.addView(searchField, 0);
+		this.searchField.setLayoutParams(searchFieldParams);
+		searchView.addView(this.searchField, 0);
+		FrameLayout fragmentLayout = new FrameLayout(this);
+		LayoutUtils.setLayoutTransition(fragmentLayout);
+		fragmentLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+		this.fragmentLayoutIdentifier = View.generateViewId();
+		fragmentLayout.setId(this.fragmentLayoutIdentifier);
+		linearLayout.addView(fragmentLayout);
+	}
+
+	private void search() {
+		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
+		new Thread(() -> {
+			Editable editable = this.searchField.getText();
+			String searchQuery = "";
+
+			if(editable != null) {
+				searchQuery = editable.toString();
+			}
+
+			if(searchQuery.isEmpty()) {
+				this.setFragment(new SingleCenterTextFragment(this.getString(R.string.emptySearchField)));
+				return;
+			}
+
+			switch(this.mode) {
+			case 0: this.identifier(searchQuery); break;
+			case 1: this.national(searchQuery); break;
+			case 2: this.nameParts(searchQuery); break;
+			}
+		}).start();
+	}
+
+	private void identifier(String searchQuery) {
+		try {
+			long studentIdentifier = Long.parseLong(searchQuery.trim());
+			Optional<Student> optional = Phichitpittayakom.student.findStudentById(studentIdentifier);
+
+			if(optional.isPresent()) {
+				this.setFragment(new StudentFragment(optional.get(), true));
+			} else {
+				this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
+			}
+		} catch(NumberFormatException ignored) {
+			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.invaildStudentIdentifier)));
+		}
+	}
+
+	private void national(String searchQuery) {
+
+	}
+
+	private void nameParts(String searchQuery) {
+
+	}
+
+	private void setFragment(Fragment fragment) {
+		this.getSupportFragmentManager()
+				.beginTransaction()
+				.replace(this.fragmentLayoutIdentifier, fragment)
+				.commit();
 	}
 }
