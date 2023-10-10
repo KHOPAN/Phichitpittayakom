@@ -35,5 +35,6 @@
             </intent-filter>
         </activity>
         <activity android:name="org.punlabs.phichitpittayakom.activity.SearchStudentActivity" />
+        <activity android:name="org.punlabs.phichitpittayakom.activity.AllStudentActivity" />
     </application>
 </manifest>

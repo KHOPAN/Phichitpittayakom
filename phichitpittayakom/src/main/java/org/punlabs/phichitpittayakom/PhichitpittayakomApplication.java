@@ -11,6 +11,7 @@ import com.khopan.api.common.card.CardBuilder;
 import com.khopan.api.common.utils.ActivityUtils;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
+import org.punlabs.phichitpittayakom.activity.AllStudentActivity;
 import org.punlabs.phichitpittayakom.activity.SearchStudentActivity;
 
 public class PhichitpittayakomApplication extends AppCompatActivity {
@@ -23,6 +24,8 @@ public class PhichitpittayakomApplication extends AppCompatActivity {
 		this.searchActivity(builder, R.string.studentIdentifier, 0);
 		this.searchActivity(builder, R.string.nationalIdentifier, 1);
 		this.searchActivity(builder, R.string.nameParts, 2);
+		builder.separate();
+		builder.card().title(this.getString(R.string.allStudent)).action(cardView -> this.startActivity(new Intent(this, AllStudentActivity.class)));
 	}
 
 	private void searchActivity(CardBuilder builder, @StringRes int resource, int mode) {
