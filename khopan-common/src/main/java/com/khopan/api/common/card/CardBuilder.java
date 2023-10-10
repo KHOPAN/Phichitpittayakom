@@ -1,6 +1,8 @@
 package com.khopan.api.common.card;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -15,7 +17,7 @@ public class CardBuilder {
 
 	private RoundLinearLayout layout;
 	private boolean added;
-	private Separator separator;
+	private View separator;
 
 	public CardBuilder(LinearLayout view, Context context) {
 		if(view == null) {
@@ -56,16 +58,24 @@ public class CardBuilder {
 		return this.separate("");
 	}
 
+	@SuppressLint("PrivateResource")
 	public CardBuilder separate(String text) {
-		this.separator = new Separator(this.context);
-		this.separator.setText(text == null ? "" : text);
+		if(text == null || text.isEmpty()) {
+			this.separator = new View(this.context);
+			this.separator.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, this.context.getResources().getDimensionPixelSize(dev.oneuiproject.oneui.design.R.dimen.sesl_list_subheader_min_height)));
+		} else {
+			Separator separator = new Separator(this.context);
+			separator.setText(text);
+			this.separator = separator;
+		}
+
 		this.view.addView(this.separator);
 		this.layout = null;
 		this.added = false;
 		return this;
 	}
 
-	public Separator separator() {
+	public View separator() {
 		return this.separator;
 	}
 
