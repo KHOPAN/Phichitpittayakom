@@ -35,6 +35,9 @@
     <string name="mathayomsuksa">Mathayomsuksa</string>
     <string name="classRoomNumber">Class room number</string>
     <string name="number">Number</string>
+    <string name="guild">Guild</string>
+    <string name="guildMaster">Guild master</string>
+    <string name="guildMasters">Guild masters</string>
 
     <!-- ListFragment -->
     <string name="foundSearchResults">Found %d search results</string>

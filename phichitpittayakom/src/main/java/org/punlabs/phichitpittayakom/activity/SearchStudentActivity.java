@@ -30,6 +30,7 @@ import java.util.Optional;
 
 import dev.oneuiproject.oneui.widget.RoundLinearLayout;
 import dev.oneuiproject.oneui.widget.Separator;
+import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Phichitpittayakom;
 import th.ac.phichitpittayakom.Student;
 import th.ac.phichitpittayakom.nationalid.NationalID;
@@ -149,13 +150,23 @@ public class SearchStudentActivity extends AppCompatActivity {
 	private void identifier(String searchQuery) {
 		try {
 			long studentIdentifier = Long.parseLong(searchQuery.trim());
-			Optional<Student> optional = Phichitpittayakom.student.findStudentById(studentIdentifier);
+			Optional<Student> studentOptional = Phichitpittayakom.student.findStudentById(studentIdentifier);
 
-			if(optional.isPresent()) {
-				this.setFragment(new StudentFragment(optional.get(), true));
-			} else {
+			if(!studentOptional.isPresent()) {
 				this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
+				return;
 			}
+
+			Student student = studentOptional.get();
+			Optional<GuildInfo> guildOptional = Phichitpittayakom.guild.findGuildById(student.getGuildIdentifier());
+
+			if(!guildOptional.isPresent()) {
+				this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
+				return;
+			}
+
+			GuildInfo guild = guildOptional.get();
+			this.setFragment(new StudentFragment(student, guild, true));
 		} catch(NumberFormatException ignored) {
 			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.invaildStudentIdentifier)));
 		}
@@ -169,13 +180,23 @@ public class SearchStudentActivity extends AppCompatActivity {
 			return;
 		}
 
-		Optional<Student> optional = Phichitpittayakom.student.findStudentByNationalID(nationalIdentifier);
+		Optional<Student> studentOptional = Phichitpittayakom.student.findStudentByNationalID(nationalIdentifier);
 
-		if(optional.isPresent()) {
-			this.setFragment(new StudentFragment(optional.get(), true));
-		} else {
+		if(!studentOptional.isPresent()) {
 			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
+			return;
 		}
+
+		Student student = studentOptional.get();
+		Optional<GuildInfo> guildOptional = Phichitpittayakom.guild.findGuildById(student.getGuildIdentifier());
+
+		if(!guildOptional.isPresent()) {
+			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
+			return;
+		}
+
+		GuildInfo guild = guildOptional.get();
+		this.setFragment(new StudentFragment(student, guild, true));
 	}
 
 	private void nameParts(String searchQuery) {

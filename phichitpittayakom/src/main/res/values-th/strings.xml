@@ -35,6 +35,9 @@
     <string name="mathayomsuksa">ระดับชั้น</string>
     <string name="classRoomNumber">ห้อง</string>
     <string name="number">เลขที่</string>
+    <string name="guild">ชุมนุม</string>
+    <string name="guildMaster">คุณครูที่ปรึกษาประจำชุมนุม</string>
+    <string name="guildMasters">คุณครูที่ปรึกษาประจำชุมนุม</string>
 
     <!-- ListFragment -->
     <string name="foundSearchResults">แสดง %d ผลการค้นหา</string>

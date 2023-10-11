@@ -15,16 +15,20 @@ import com.khopan.api.common.fragment.ContextedFragment;
 import com.khopan.api.common.utils.LayoutUtils;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
+import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Student;
+import th.ac.phichitpittayakom.Teacher;
 import th.ac.phichitpittayakom.grade.Grade;
 import th.ac.phichitpittayakom.name.Name;
 
 public class StudentFragment extends ContextedFragment {
 	private final Student student;
+	private final GuildInfo guild;
 	private final boolean showResult;
 
-	public StudentFragment(Student student, boolean showResult) {
+	public StudentFragment(Student student, GuildInfo guild, boolean showResult) {
 		this.student = student;
+		this.guild = guild;
 		this.showResult = showResult;
 	}
 
@@ -58,6 +62,17 @@ public class StudentFragment extends ContextedFragment {
 		builder.separate();
 		builder.card().title(Integer.toString(this.student.getNumber())).summary(this.getString(R.string.number));
 		builder.card().title(Long.toString(this.student.getStudentIdentifier())).summary(this.getString(R.string.studentIdentifier));
+		builder.separate();
+		builder.card().title(this.guild.getName()).summary(this.getString(R.string.guild));
+		Teacher[] teachers = this.guild.getTeachers();
+
+		if(teachers.length != 0) {
+			builder.separate(this.getString(teachers.length == 1 ? R.string.guildMaster : R.string.guildMasters));
+
+			for(Teacher teacher : teachers) {
+				builder.card().title(teacher.getName().toString()).summary(teacher.getNationalIdentifier().toString());
+			}
+		}
 	}
 
 	@Nullable
