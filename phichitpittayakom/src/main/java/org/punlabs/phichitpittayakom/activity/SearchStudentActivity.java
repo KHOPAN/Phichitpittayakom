@@ -186,7 +186,7 @@ public class SearchStudentActivity extends AppCompatActivity {
 			return;
 		}
 
-		this.setFragment(new ListFragment<>(studentList, (context, student) -> student.getName().toString(), (context, student) -> student.getStudentIdentifier() + " ⋅ " + student.getGrade() + " ⋅ " + student.getNumber(), (context, student) -> {}));
+		this.setFragment(new ListFragment<>(studentList, (context, student) -> student.getName().toString(), (context, student) -> student.getStudentIdentifier() + " ⋅ " + student.getGrade() + " ⋅ " + student.getNumber(), StudentActivity :: open));
 	}
 
 	private void setFragment(Fragment fragment) {

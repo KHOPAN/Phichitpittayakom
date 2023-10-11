@@ -36,5 +36,6 @@
         </activity>
         <activity android:name="org.punlabs.phichitpittayakom.activity.SearchStudentActivity" />
         <activity android:name="org.punlabs.phichitpittayakom.activity.AllStudentActivity" />
+        <activity android:name="org.punlabs.phichitpittayakom.activity.StudentActivity" />
     </application>
 </manifest>
