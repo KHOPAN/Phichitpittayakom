@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.khopan.api.common.R;
 import com.khopan.api.common.utils.LayoutUtils;
 import com.khopan.api.common.utils.NetworkUtils;
 
@@ -66,10 +67,11 @@ public abstract class FragmentedActivity extends AppCompatActivity implements IF
 		this.fragment = fragment;
 
 		if(this.fragment == null) {
-			//this.fragmentLayout.removeAllViews();
+			this.fragmentLayout.removeAllViews();
 		} else {
 			this.getSupportFragmentManager()
 					.beginTransaction()
+					.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
 					.replace(this.frameLayoutIdentifier, fragment)
 					.commit();
 		}
