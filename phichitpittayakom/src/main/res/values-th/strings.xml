@@ -13,6 +13,7 @@
     <string name="nationalIdentifier">เลขบัตรประจำตัวประชาชน</string>
     <string name="nameParts">ชื่อหรือนามสกุล</string>
     <string name="allStudent">นักเรียนทั้งหมด</string>
+    <string name="allGuild">ชุมนุมทั้งหมด</string>
 
     <!-- SearchStudentActivity -->
     <string name="searchStudentByStudentIdentifier">ค้นหานักเรียนโดยเลขประจำตัวนักเรียน</string>
