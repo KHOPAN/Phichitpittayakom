@@ -25,7 +25,7 @@ public class AllStudentActivity extends FragmentedActivity {
 		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
 		new Thread(() -> {
 			List<Student> studentList = Phichitpittayakom.student.getAllStudent();
-			this.setFragment(new ListFragment<>(studentList, (context, student) -> student.getName().toString(), (context, student) -> student.getStudentIdentifier() + " ⋅ " + student.getGrade() + " ⋅ " + student.getNumber(), StudentActivity :: open));
+			this.setFragment(new ListFragment<>(studentList, StudentActivity :: title, StudentActivity :: summary, StudentActivity :: action));
 		}).start();
 	}
 }

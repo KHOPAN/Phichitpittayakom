@@ -207,7 +207,7 @@ public class SearchStudentActivity extends AppCompatActivity {
 			return;
 		}
 
-		this.setFragment(new ListFragment<>(studentList, (context, student) -> student.getName().toString(), (context, student) -> student.getStudentIdentifier() + " ⋅ " + student.getGrade() + " ⋅ " + student.getNumber(), StudentActivity :: open));
+		this.setFragment(new ListFragment<>(studentList, StudentActivity :: title, StudentActivity :: summary, StudentActivity :: action));
 	}
 
 	private void setFragment(Fragment fragment) {

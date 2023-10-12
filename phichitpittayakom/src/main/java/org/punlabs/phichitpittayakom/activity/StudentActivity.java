@@ -32,9 +32,9 @@ public class StudentActivity extends FragmentedActivity {
 			return;
 		}
 
-		String title = StudentActivity.Student.getName().toString();
+		String title = StudentActivity.title(this, StudentActivity.Student);
 		this.toolbarLayout.setTitle(title, title);
-		this.toolbarLayout.setExpandedSubtitle(StudentActivity.Student.getStudentIdentifier() + " ⋅ " + StudentActivity.Student.getGrade() + " ⋅ " + StudentActivity.Student.getNumber());
+		this.toolbarLayout.setExpandedSubtitle(StudentActivity.summary(this, StudentActivity.Student));
 		long identifier = StudentActivity.Student.getGuildIdentifier();
 		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
 		new Thread(() -> {
@@ -50,7 +50,15 @@ public class StudentActivity extends FragmentedActivity {
 		}).start();
 	}
 
-	public static void open(Context context, Student student) {
+	public static String title(Context ignoredContext, Student student) {
+		return student.getName().toString();
+	}
+
+	public static String summary(Context ignoredContext, Student student) {
+		return student.getStudentIdentifier() + " ⋅ " + student.getGrade() + " ⋅ " + student.getNumber();
+	}
+
+	public static void action(Context context, Student student) {
 		StudentActivity.Student = student;
 		context.startActivity(new Intent(context, StudentActivity.class));
 	}
