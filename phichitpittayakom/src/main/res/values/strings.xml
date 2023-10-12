@@ -42,4 +42,21 @@
 
     <!-- ListFragment -->
     <string name="foundSearchResults">Found %d search results</string>
+
+    <!-- GuildFragment -->
+    <string name="guildIdentifier">Guild identifier</string>
+    <string name="guildName">Guild name</string>
+    <string name="guildLocation">Location</string>
+    <string name="guildClass">Guild class</string>
+    <string name="subjectArea">Subject area</string>
+    <string name="goal">Goal</string>
+    <string name="goals">Goals</string>
+    <string name="minimumMember">Minimum member</string>
+    <string name="minimumMembers">Minimum members</string>
+    <string name="maximumMember">Maximum member</string>
+    <string name="maximumMembers">Maximum members</string>
+    <string name="memberCount">Member count</string>
+    <string name="remainingCount">Remaining count</string>
+    <string name="member">Member</string>
+    <string name="members">Members</string>
 </resources>

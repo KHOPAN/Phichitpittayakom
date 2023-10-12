@@ -25,7 +25,7 @@ public class AllGuildActivity extends FragmentedActivity {
 		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
 		new Thread(() -> {
 			List<Guild> guildList = Phichitpittayakom.guild.getAllGuild();
-			this.setFragment(new ListFragment<>(guildList, (context, guild) -> guild.getName(), (context, guild) -> guild.getIdentifier() + " ⋅ " + guild.getLocation() + " ⋅ " + guild.getGuildClass() + " ⋅ " + guild.getMemberCount() + "/" + guild.getMaximumMembers(), (context, guild) -> {}));
+			this.setFragment(new ListFragment<>(guildList, GuildActivity :: title, GuildActivity :: summary, GuildActivity :: action));
 		}).start();
 	}
 }

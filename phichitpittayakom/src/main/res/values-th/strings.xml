@@ -42,4 +42,21 @@
 
     <!-- ListFragment -->
     <string name="foundSearchResults">แสดง %d ผลการค้นหา</string>
+
+    <!-- GuildFragment -->
+    <string name="guildIdentifier">รหัสชุมนุม</string>
+    <string name="guildName">ชื่อชุมนุม</string>
+    <string name="guildLocation">สถานที่เรียน</string>
+    <string name="guildClass">ระดับชั้น</string>
+    <string name="subjectArea">กลุ่มสาระการเรียนรู้</string>
+    <string name="goal">จุดประสงค์</string>
+    <string name="goals">จุดประสงค์</string>
+    <string name="minimumMember">สมาชิกที่น้อยที่สุดที่รับ</string>
+    <string name="minimumMembers">สมาชิกที่น้อยที่สุดที่รับ</string>
+    <string name="maximumMember">สมาชิกที่มากที่สุดที่รับได้</string>
+    <string name="maximumMembers">สมาชิกที่มากที่สุดที่รับได้</string>
+    <string name="memberCount">จำนวนสมาชิก</string>
+    <string name="remainingCount">สมาชิกที่เหลือ</string>
+    <string name="member">นักเรียนในชุมนุม</string>
+    <string name="members">นักเรียนในชุมนุม</string>
 </resources>
