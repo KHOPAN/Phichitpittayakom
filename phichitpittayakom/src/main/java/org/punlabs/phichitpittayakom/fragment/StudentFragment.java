@@ -15,6 +15,8 @@ import com.khopan.api.common.fragment.ContextedFragment;
 import com.khopan.api.common.utils.LayoutUtils;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
+import org.punlabs.phichitpittayakom.activity.GuildActivity;
+
 import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Student;
 import th.ac.phichitpittayakom.Teacher;
@@ -62,8 +64,8 @@ public class StudentFragment extends ContextedFragment {
 		builder.separate();
 		builder.card().title(Integer.toString(this.student.getNumber())).summary(this.getString(R.string.number));
 		builder.card().title(Long.toString(this.student.getStudentIdentifier())).summary(this.getString(R.string.studentIdentifier));
-		builder.separate();
-		builder.card().title(this.guild.getName()).summary(this.getString(R.string.guild));
+		builder.separate(this.getString(R.string.guild));
+		builder.card().title(GuildActivity.title(this.context, this.guild)).summary(GuildActivity.summary(this.context, this.guild));
 		Teacher[] teachers = this.guild.getTeachers();
 
 		if(teachers.length != 0) {
