@@ -16,6 +16,7 @@ import com.khopan.api.common.utils.LayoutUtils;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
 import org.punlabs.phichitpittayakom.activity.StudentActivity;
+import org.punlabs.phichitpittayakom.activity.TeacherActivity;
 
 import java.util.Locale;
 
@@ -72,7 +73,7 @@ public class GuildFragment extends ContextedFragment {
 			builder.separate(this.getString(teachers.length == 1 ? R.string.guildMaster : R.string.guildMasters));
 
 			for(Teacher teacher : teachers) {
-				builder.card().title(teacher.getName().toString()).summary(teacher.getNationalIdentifier().toString());
+				builder.card().title(TeacherActivity.title(this.context, teacher)).summary(TeacherActivity.summary(this.context, teacher));
 			}
 		}
 
