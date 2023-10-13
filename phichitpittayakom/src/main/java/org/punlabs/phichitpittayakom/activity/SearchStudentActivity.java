@@ -16,10 +16,12 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
+import com.khopan.api.common.activity.IFragmentActivity;
 import com.khopan.api.common.fragment.LoadingFragment;
 import com.khopan.api.common.fragment.SingleCenterTextFragment;
 import com.khopan.api.common.utils.ActivityUtils;
 import com.khopan.api.common.utils.LayoutUtils;
+import com.khopan.api.common.utils.NetworkUtils;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
 import org.punlabs.phichitpittayakom.fragment.ListFragment;
@@ -36,10 +38,11 @@ import th.ac.phichitpittayakom.Student;
 import th.ac.phichitpittayakom.nationalid.NationalID;
 import th.ac.phichitpittayakom.nationalid.NationalIDParser;
 
-public class SearchStudentActivity extends AppCompatActivity {
+public class SearchStudentActivity extends AppCompatActivity implements IFragmentActivity {
 	private int mode;
 	private EditText searchField;
 	private int fragmentLayoutIdentifier;
+	private Fragment fragment;
 
 	@Override
 	public void onCreate(Bundle bundle) {
@@ -126,7 +129,7 @@ public class SearchStudentActivity extends AppCompatActivity {
 
 	private void search() {
 		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
-		new Thread(() -> {
+		NetworkUtils.assertInternet(this, () -> new Thread(() -> {
 			Editable editable = this.searchField.getText();
 			String searchQuery = "";
 
@@ -140,11 +143,11 @@ public class SearchStudentActivity extends AppCompatActivity {
 			}
 
 			switch(this.mode) {
-			case 0: this.identifier(searchQuery); break;
-			case 1: this.national(searchQuery); break;
-			case 2: this.nameParts(searchQuery); break;
+				case 0: this.identifier(searchQuery); break;
+				case 1: this.national(searchQuery); break;
+				case 2: this.nameParts(searchQuery); break;
 			}
-		}).start();
+		}).start());
 	}
 
 	private void identifier(String searchQuery) {
@@ -210,11 +213,18 @@ public class SearchStudentActivity extends AppCompatActivity {
 		this.setFragment(new ListFragment<>(studentList, StudentActivity :: title, StudentActivity :: summary, StudentActivity :: action));
 	}
 
-	private void setFragment(Fragment fragment) {
+	@Override
+	public void setFragment(Fragment fragment) {
+		this.fragment = fragment;
 		this.getSupportFragmentManager()
 				.beginTransaction()
 				.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-				.replace(this.fragmentLayoutIdentifier, fragment)
+				.replace(this.fragmentLayoutIdentifier, this.fragment)
 				.commit();
+	}
+
+	@Override
+	public Fragment getFragment() {
+		return this.fragment;
 	}
 }

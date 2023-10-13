@@ -1,7 +1,6 @@
 package org.punlabs.phichitpittayakom.activity;
 
 import com.khopan.api.common.activity.FragmentedActivity;
-import com.khopan.api.common.fragment.LoadingFragment;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
 import org.punlabs.phichitpittayakom.fragment.ListFragment;
@@ -22,10 +21,10 @@ public class AllGuildActivity extends FragmentedActivity {
 		String title = this.getString(R.string.allGuild);
 		this.toolbarLayout.setTitle(title, title);
 		this.toolbarLayout.setExpandedSubtitle(this.getString(R.string.collapseTitle));
-		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
-		new Thread(() -> {
+		this.loading();
+		this.internet(() -> new Thread(() -> {
 			List<Guild> guildList = Phichitpittayakom.guild.getAllGuild();
 			this.setFragment(new ListFragment<>(guildList, GuildActivity :: title, GuildActivity :: summary, GuildActivity :: action));
-		}).start();
+		}).start());
 	}
 }

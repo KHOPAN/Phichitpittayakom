@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.khopan.api.common.activity.FragmentedActivity;
-import com.khopan.api.common.fragment.LoadingFragment;
 import com.khopan.api.common.fragment.SingleCenterTextFragment;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
@@ -36,8 +35,8 @@ public class StudentActivity extends FragmentedActivity {
 		this.toolbarLayout.setTitle(title, title);
 		this.toolbarLayout.setExpandedSubtitle(StudentActivity.summary(this, StudentActivity.Student));
 		long identifier = StudentActivity.Student.getGuildIdentifier();
-		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
-		new Thread(() -> {
+		this.loading();
+		this.internet(() -> new Thread(() -> {
 			Optional<GuildInfo> optional = Phichitpittayakom.guild.findGuildById(identifier);
 
 			if(!optional.isPresent()) {
@@ -47,7 +46,7 @@ public class StudentActivity extends FragmentedActivity {
 
 			GuildInfo guild = optional.get();
 			this.setFragment(new StudentFragment(StudentActivity.Student, guild, false));
-		}).start();
+		}).start());
 	}
 
 	public static String title(Context ignoredContext, Student student) {

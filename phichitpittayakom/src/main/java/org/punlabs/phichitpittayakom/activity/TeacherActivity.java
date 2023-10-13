@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.khopan.api.common.activity.FragmentedActivity;
-import com.khopan.api.common.fragment.LoadingFragment;
 import com.khopan.api.common.fragment.SingleCenterTextFragment;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
@@ -37,9 +36,9 @@ public class TeacherActivity extends FragmentedActivity {
 		String title = TeacherActivity.title(this, TeacherActivity.Teacher);
 		this.toolbarLayout.setTitle(title, title);
 		this.toolbarLayout.setExpandedSubtitle(TeacherActivity.summary(this, TeacherActivity.Teacher));
-		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
 		long identifier = TeacherActivity.Teacher.getGuildIdentifier();
-		new Thread(() -> {
+		this.loading();
+		this.internet(() -> new Thread(() -> {
 			Optional<GuildInfo> guildOptional = Phichitpittayakom.guild.findGuildById(identifier);
 
 			if(!guildOptional.isPresent()) {
@@ -57,7 +56,7 @@ public class TeacherActivity extends FragmentedActivity {
 			}
 
 			this.setFragment(new TeacherFragment(TeacherActivity.Teacher, guild, image));
-		}).start();
+		}).start());
 	}
 
 	public static String title(Context ignoredContext, Teacher teacher) {
