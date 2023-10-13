@@ -1,5 +1,6 @@
 package org.punlabs.phichitpittayakom.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,14 +50,7 @@ public class StudentFragment extends ContextedFragment {
 			builder.separate(this.getString(R.string.foundOneSearchResult));
 		}
 
-		Name name = this.student.getName();
-		builder.card().title(name.getPrefix().toString()).summary(this.getString(R.string.namePrefix));
-		String[] names = name.getNames();
-
-		for(int i = 0; i < names.length; i++) {
-			builder.card().title(names[i]).summary(this.getString(i == 0 ? R.string.firstName : i == names.length - 1 ? R.string.lastName : R.string.middleName));
-		}
-
+		StudentFragment.buildName(builder, this.context, this.student.getName());
 		builder.separate();
 		Grade grade = this.student.getGrade();
 		builder.card().title(this.getString(R.string.gradeNumber, grade.getGrade())).summary(this.getString(R.string.mathayomsuksa));
@@ -81,5 +75,14 @@ public class StudentFragment extends ContextedFragment {
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup group, @Nullable Bundle bundle) {
 		return new NestedScrollView(this.context);
+	}
+
+	public static void buildName(CardBuilder builder, Context context, Name name) {
+		builder.card().title(name.getPrefix().toString()).summary(context.getString(R.string.namePrefix));
+		String[] names = name.getNames();
+
+		for(int i = 0; i < names.length; i++) {
+			builder.card().title(names[i]).summary(context.getString(i == 0 ? R.string.firstName : i == names.length - 1 ? R.string.lastName : R.string.middleName));
+		}
 	}
 }

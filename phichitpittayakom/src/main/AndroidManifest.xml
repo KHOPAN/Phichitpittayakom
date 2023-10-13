@@ -39,5 +39,7 @@
         <activity android:name="org.punlabs.phichitpittayakom.activity.StudentActivity" />
         <activity android:name="org.punlabs.phichitpittayakom.activity.AllGuildActivity" />
         <activity android:name="org.punlabs.phichitpittayakom.activity.GuildActivity" />
+        <activity android:name="org.punlabs.phichitpittayakom.activity.AllTeacherActivity" />
+        <activity android:name="org.punlabs.phichitpittayakom.activity.TeacherActivity" />
     </application>
 </manifest>

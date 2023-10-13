@@ -14,6 +14,7 @@
     <string name="nameParts">Name parts</string>
     <string name="allStudent">All student</string>
     <string name="allGuild">All guild</string>
+    <string name="allTeacher">All teacher</string>
 
     <!-- SearchStudentActivity -->
     <string name="searchStudentByStudentIdentifier">Search student by student identifier</string>
