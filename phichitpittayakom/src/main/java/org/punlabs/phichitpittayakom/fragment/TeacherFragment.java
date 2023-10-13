@@ -16,9 +16,14 @@ import com.khopan.api.common.utils.LayoutUtils;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
 import org.punlabs.phichitpittayakom.activity.GuildActivity;
+import org.punlabs.phichitpittayakom.activity.TeacherActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Teacher;
+import th.ac.phichitpittayakom.nationalid.NationalID;
 
 public class TeacherFragment extends ContextedFragment {
 	private final Teacher teacher;
@@ -44,6 +49,26 @@ public class TeacherFragment extends ContextedFragment {
 		builder.card().title(this.teacher.getNationalIdentifier().toString()).summary(this.getString(R.string.nationalIdentifier));
 		builder.separate(this.getString(R.string.guild));
 		builder.card().title(GuildActivity.title(this.context, this.guild)).summary(GuildActivity.summary(this.context, this.guild)).action(cardView -> GuildActivity.action(this.context, this.guild));
+		Teacher[] teachers = this.guild.getTeachers();
+		List<Teacher> teacherList = new ArrayList<>();
+
+		for(Teacher teacher : teachers) {
+			if(teacher == null) {
+				continue;
+			}
+
+			teacherList.add(teacher);
+		}
+
+		teacherList.removeIf(teacher -> NationalID.compare(teacher.getNationalIdentifier(), this.teacher.getNationalIdentifier()) == 0);
+
+		if(teacherList.size() > 0) {
+			builder.separate(this.getString(R.string.guildMasterWith));
+
+			for(Teacher teacher : teacherList) {
+				builder.card().title(TeacherActivity.title(this.context, teacher)).summary(TeacherActivity.summary(this.context, teacher)).action(cardView -> TeacherActivity.action(this.context, teacher));
+			}
+		}
 	}
 
 	@Nullable

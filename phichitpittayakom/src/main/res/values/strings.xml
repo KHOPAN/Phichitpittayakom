@@ -61,4 +61,7 @@
     <string name="remainingCount">Remaining count</string>
     <string name="member">Member</string>
     <string name="members">Members</string>
+
+    <!-- TeacherFragment -->
+    <string name="guildMasterWith">Guild master with</string>
 </resources>
