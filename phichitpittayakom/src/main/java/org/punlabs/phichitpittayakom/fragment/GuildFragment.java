@@ -17,6 +17,8 @@ import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
 import org.punlabs.phichitpittayakom.activity.StudentActivity;
 
+import java.util.Locale;
+
 import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Student;
 import th.ac.phichitpittayakom.Teacher;
@@ -55,11 +57,14 @@ public class GuildFragment extends ContextedFragment {
 			builder.separate();
 		}
 
+		int memberCount = this.guild.getMemberCount();
+		int maximumMembers = this.guild.getMaximumMembers();
+		builder.card().title(String.format(Locale.getDefault(), "%.2f%%", (((double) memberCount) / ((double) maximumMembers)) * 100.0d)).summary(this.getString(R.string.memberCountPercentage));
+		builder.separate();
 		int minimumMembers = this.guild.getMinimumMembers();
 		builder.card().title(Integer.toString(minimumMembers)).summary(this.getString(minimumMembers == 1 ? R.string.minimumMember : R.string.minimumMembers));
-		int maximumMembers = this.guild.getMaximumMembers();
 		builder.card().title(Integer.toString(maximumMembers)).summary(this.getString(maximumMembers == 1 ? R.string.maximumMember : R.string.maximumMembers));
-		builder.card().title(Integer.toString(this.guild.getMemberCount())).summary(this.getString(R.string.memberCount));
+		builder.card().title(Integer.toString(memberCount)).summary(this.getString(R.string.memberCount));
 		builder.card().title(Integer.toString(this.guild.getRemainingCount())).summary(this.getString(R.string.remainingCount));
 		Teacher[] teachers = this.guild.getTeachers();
 

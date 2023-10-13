@@ -51,6 +51,7 @@
     <string name="subjectArea">กลุ่มสาระการเรียนรู้</string>
     <string name="goal">จุดประสงค์</string>
     <string name="goals">จุดประสงค์</string>
+    <string name="memberCountPercentage">Member count percentage</string>
     <string name="minimumMember">สมาชิกที่น้อยที่สุดที่รับ</string>
     <string name="minimumMembers">สมาชิกที่น้อยที่สุดที่รับ</string>
     <string name="maximumMember">สมาชิกที่มากที่สุดที่รับได้</string>

@@ -51,6 +51,7 @@
     <string name="subjectArea">Subject area</string>
     <string name="goal">Goal</string>
     <string name="goals">Goals</string>
+    <string name="memberCountPercentage">Member count percentage</string>
     <string name="minimumMember">Minimum member</string>
     <string name="minimumMembers">Minimum members</string>
     <string name="maximumMember">Maximum member</string>
