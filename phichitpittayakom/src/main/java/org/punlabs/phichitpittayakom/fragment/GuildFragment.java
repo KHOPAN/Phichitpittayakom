@@ -73,7 +73,7 @@ public class GuildFragment extends ContextedFragment {
 			builder.separate(this.getString(teachers.length == 1 ? R.string.guildMaster : R.string.guildMasters));
 
 			for(Teacher teacher : teachers) {
-				builder.card().title(TeacherActivity.title(this.context, teacher)).summary(TeacherActivity.summary(this.context, teacher));
+				builder.card().title(TeacherActivity.title(this.context, teacher)).summary(TeacherActivity.summary(this.context, teacher)).action(cardView -> TeacherActivity.action(this.context, teacher));
 			}
 		}
 
