@@ -2,7 +2,6 @@ package th.ac.phichitpittayakom;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,19 @@ public class StudentAPI {
 
 				if(optional.isPresent()) {
 					GuildInfo information = optional.get();
-					studentList.addAll(Arrays.asList(information.getMembers()));
+					Student[] members = information.getMembers();
+
+					if(members == null || members.length == 0) {
+						return;
+					}
+
+					for(Student member : members) {
+						if(member == null) {
+							continue;
+						}
+
+						studentList.add(member);
+					}
 				}
 			});
 
@@ -120,10 +131,7 @@ public class StudentAPI {
 
 		for(Element element : elements) {
 			Optional<Student> optional = this.processStudentInternal(element);
-
-			if(optional.isPresent()) {
-				studentList.add(optional.get());
-			}
+			optional.ifPresent(studentList :: add);
 		}
 
 		return studentList;
