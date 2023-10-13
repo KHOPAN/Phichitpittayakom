@@ -10,6 +10,7 @@ import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
 import org.punlabs.phichitpittayakom.fragment.GuildFragment;
 
+import java.util.Locale;
 import java.util.Optional;
 
 import th.ac.phichitpittayakom.Guild;
@@ -55,7 +56,8 @@ public class GuildActivity extends FragmentedActivity {
 	}
 
 	public static String summary(Context ignoredContext, Guild guild) {
-		return guild.getIdentifier() + " ⋅ " + guild.getLocation() + " ⋅ " + guild.getGuildClass() + " ⋅ " + guild.getMemberCount() + "/" + guild.getMaximumMembers();
+		String percentage = String.format(Locale.getDefault(), "%.2f%%", (((double) guild.getMemberCount()) / ((double) guild.getMaximumMembers())) * 100.0d);
+		return percentage + " ⋅ " + guild.getIdentifier() + " ⋅ " + guild.getGuildClass() + " ⋅ " + guild.getLocation();
 	}
 
 	public static void action(Context context, Guild guild) {
