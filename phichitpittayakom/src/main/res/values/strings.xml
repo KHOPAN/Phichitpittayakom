@@ -64,4 +64,5 @@
 
     <!-- TeacherFragment -->
     <string name="guildMasterWith">Guild master with</string>
+    <string name="image">Image</string>
 </resources>

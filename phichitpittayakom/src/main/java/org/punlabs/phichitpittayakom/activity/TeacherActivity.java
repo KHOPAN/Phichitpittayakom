@@ -2,6 +2,8 @@ package org.punlabs.phichitpittayakom.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.khopan.api.common.activity.FragmentedActivity;
 import com.khopan.api.common.fragment.LoadingFragment;
@@ -38,15 +40,23 @@ public class TeacherActivity extends FragmentedActivity {
 		this.setFragment(new LoadingFragment(this.getString(R.string.loading)));
 		long identifier = TeacherActivity.Teacher.getGuildIdentifier();
 		new Thread(() -> {
-			Optional<GuildInfo> optional = Phichitpittayakom.guild.findGuildById(identifier);
+			Optional<GuildInfo> guildOptional = Phichitpittayakom.guild.findGuildById(identifier);
 
-			if(!optional.isPresent()) {
+			if(!guildOptional.isPresent()) {
 				this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
 				return;
 			}
 
-			GuildInfo guild = optional.get();
-			this.setFragment(new TeacherFragment(TeacherActivity.Teacher, guild));
+			GuildInfo guild = guildOptional.get();
+			Optional<byte[]> imageOptional = TeacherActivity.Teacher.getImage();
+			Bitmap image = null;
+
+			if(imageOptional.isPresent()) {
+				byte[] imageData = imageOptional.get();
+				image = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+			}
+
+			this.setFragment(new TeacherFragment(TeacherActivity.Teacher, guild, image));
 		}).start();
 	}
 

@@ -64,4 +64,5 @@
 
     <!-- TeacherFragment -->
     <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกับ</string>
+    <string name="image">รูป</string>
 </resources>
