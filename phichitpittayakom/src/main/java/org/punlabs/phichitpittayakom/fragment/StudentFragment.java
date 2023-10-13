@@ -65,7 +65,7 @@ public class StudentFragment extends ContextedFragment {
 		builder.card().title(Integer.toString(this.student.getNumber())).summary(this.getString(R.string.number));
 		builder.card().title(Long.toString(this.student.getStudentIdentifier())).summary(this.getString(R.string.studentIdentifier));
 		builder.separate(this.getString(R.string.guild));
-		builder.card().title(GuildActivity.title(this.context, this.guild)).summary(GuildActivity.summary(this.context, this.guild));
+		builder.card().title(GuildActivity.title(this.context, this.guild)).summary(GuildActivity.summary(this.context, this.guild)).action(cardView -> GuildActivity.action(this.context, this.guild));
 		Teacher[] teachers = this.guild.getTeachers();
 
 		if(teachers.length != 0) {
