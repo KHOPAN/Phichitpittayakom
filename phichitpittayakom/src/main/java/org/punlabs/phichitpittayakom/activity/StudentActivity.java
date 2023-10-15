@@ -11,9 +11,9 @@ import org.punlabs.phichitpittayakom.fragment.StudentFragment;
 
 import java.util.Optional;
 
-import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Phichitpittayakom;
-import th.ac.phichitpittayakom.Student;
+import th.ac.phichitpittayakom.guild.GuildInfo;
+import th.ac.phichitpittayakom.student.Student;
 
 public class StudentActivity extends FragmentedActivity {
 	public static Student Student;

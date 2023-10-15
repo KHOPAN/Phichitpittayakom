@@ -9,7 +9,7 @@ public class Name {
 		this.names = new String[0];
 	}
 
-	Name(NamePrefix prefix, String[] names) {
+	public Name(NamePrefix prefix, String[] names) {
 		this.prefix = prefix;
 		this.names = names;
 	}
@@ -57,7 +57,7 @@ public class Name {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(this.prefix.getStringRepresentation());
+		builder.append(this.prefix);
 
 		for(String name : this.names) {
 			builder.append(' ');

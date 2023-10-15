@@ -1,27 +1,24 @@
 package th.ac.phichitpittayakom.name;
 
 public enum NamePrefix {
-	DEK_CHAI("เด็กชาย", true),
-	NAI("นาย", true),
-	DEK_YING("เด็กหญิง", false),
-	NANG_SAO("นางสาว", false),
-	NANG("นาง", false),
-	MR("Mr.", true),
-	MISS("Miss", false),
-	MS("Ms.", false),
-	MRS("Mrs.", false),
-	UNDEFINED("", false);
+	DEK_CHAI(true, "เด็กชาย", "ด.ช."),
+	NAI(true, "นาย"),
+	DEK_YING(false, "เด็กหญิง", "ด.ญ."),
+	NANG_SAO(false, "นางสาว", "น.ส."),
+	NANG(false, "นาง"),
+	DOCTOR(true, "ดร."),
+	MR(true, "Mr."),
+	MISS(false, "Miss"),
+	MS(false, "Ms."),
+	MRS(false, "Mrs."),
+	UNDEFINED(false, "");
 
-	private final String stringRepresentation;
 	private final boolean isMale;
+	private final String[] stringRepresentations;
 
-	NamePrefix(String stringRepresentation, boolean isMale) {
-		this.stringRepresentation = stringRepresentation;
+	NamePrefix(boolean isMale, String... stringRepresentations) {
 		this.isMale = isMale;
-	}
-
-	public String getStringRepresentation() {
-		return this.stringRepresentation;
+		this.stringRepresentations = stringRepresentations;
 	}
 
 	public boolean isMale() {
@@ -36,8 +33,12 @@ public enum NamePrefix {
 		return !this.isMale;
 	}
 
+	public String[] getStringRepresentations() {
+		return this.stringRepresentations;
+	}
+
 	@Override
 	public String toString() {
-		return this.stringRepresentation;
+		return this.stringRepresentations[0];
 	}
 }

@@ -7,8 +7,8 @@ import org.punlabs.phichitpittayakom.fragment.ListFragment;
 
 import java.util.List;
 
-import th.ac.phichitpittayakom.Guild;
 import th.ac.phichitpittayakom.Phichitpittayakom;
+import th.ac.phichitpittayakom.guild.Guild;
 
 public class AllGuildActivity extends FragmentedActivity {
 	public AllGuildActivity() {

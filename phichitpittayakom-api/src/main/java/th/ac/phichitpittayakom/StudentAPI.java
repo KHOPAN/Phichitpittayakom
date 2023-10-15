@@ -2,6 +2,7 @@ package th.ac.phichitpittayakom;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,9 +13,12 @@ import org.jsoup.select.Elements;
 
 import th.ac.phichitpittayakom.grade.Grade;
 import th.ac.phichitpittayakom.grade.GradeParser;
+import th.ac.phichitpittayakom.guild.Guild;
+import th.ac.phichitpittayakom.guild.GuildInfo;
 import th.ac.phichitpittayakom.name.Name;
 import th.ac.phichitpittayakom.name.NameParser;
 import th.ac.phichitpittayakom.nationalid.NationalID;
+import th.ac.phichitpittayakom.student.Student;
 
 public class StudentAPI {
 	StudentAPI() {}
@@ -31,19 +35,7 @@ public class StudentAPI {
 
 				if(optional.isPresent()) {
 					GuildInfo information = optional.get();
-					Student[] members = information.getMembers();
-
-					if(members == null || members.length == 0) {
-						return;
-					}
-
-					for(Student member : members) {
-						if(member == null) {
-							continue;
-						}
-
-						studentList.add(member);
-					}
+					studentList.addAll(Arrays.asList(information.getMembers()));
 				}
 			});
 
@@ -131,7 +123,10 @@ public class StudentAPI {
 
 		for(Element element : elements) {
 			Optional<Student> optional = this.processStudentInternal(element);
-			optional.ifPresent(studentList :: add);
+
+			if(optional.isPresent()) {
+				studentList.add(optional.get());
+			}
 		}
 
 		return studentList;

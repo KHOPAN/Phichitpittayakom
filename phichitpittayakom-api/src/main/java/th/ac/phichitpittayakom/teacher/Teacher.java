@@ -1,7 +1,8 @@
-package th.ac.phichitpittayakom;
+package th.ac.phichitpittayakom.teacher;
 
 import java.util.Optional;
 
+import th.ac.phichitpittayakom.Phichitpittayakom;
 import th.ac.phichitpittayakom.name.Name;
 import th.ac.phichitpittayakom.nationalid.NationalID;
 
@@ -18,7 +19,7 @@ public class Teacher {
 		this.imageIdentifier = "";
 	}
 
-	Teacher(Name name, NationalID nationalIdentifier, long guildIdentifier, String imageIdentifier) {
+	public Teacher(Name name, NationalID nationalIdentifier, long guildIdentifier, String imageIdentifier) {
 		this.name = name;
 		this.nationalIdentifier = nationalIdentifier;
 		this.guildIdentifier = guildIdentifier;

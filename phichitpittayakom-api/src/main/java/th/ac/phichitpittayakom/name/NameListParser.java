@@ -38,26 +38,26 @@ public class NameListParser {
 
 					String firstPart = namePart.get(0);
 
-					for(NamePrefix namePrefix : namePrefixes) {
-						String stringPrefix = namePrefix.getStringRepresentation();
+					loop: for(NamePrefix namePrefix : namePrefixes) {
+						for(String stringPrefix : namePrefix.getStringRepresentations()) {
+							if(firstPart.startsWith(stringPrefix)) {
+								List<String> nameList = new ArrayList<>();
 
-						if(firstPart.startsWith(stringPrefix)) {
-							List<String> nameList = new ArrayList<>();
-
-							try {
-								nameList.add(firstPart.substring(stringPrefix.length()));
-							} catch(IndexOutOfBoundsException ignored) {
-								continue;
-							}
-
-							if(size > 1) {
-								for(int t = 1; t < size; t++) {
-									nameList.add(namePart.get(t));
+								try {
+									nameList.add(firstPart.substring(stringPrefix.length()));
+								} catch(IndexOutOfBoundsException ignored) {
+									continue;
 								}
-							}
 
-							resultList.add(new Name(namePrefix, nameList.toArray(new String[0])));
-							break;
+								if(size > 1) {
+									for(int t = 1; t < size; t++) {
+										nameList.add(namePart.get(t));
+									}
+								}
+
+								resultList.add(new Name(namePrefix, nameList.toArray(new String[0])));
+								break loop;
+							}
 						}
 					}
 

@@ -13,9 +13,9 @@ import org.punlabs.phichitpittayakom.fragment.TeacherFragment;
 
 import java.util.Optional;
 
-import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Phichitpittayakom;
-import th.ac.phichitpittayakom.Teacher;
+import th.ac.phichitpittayakom.guild.GuildInfo;
+import th.ac.phichitpittayakom.teacher.Teacher;
 
 public class TeacherActivity extends FragmentedActivity {
 	private static Teacher Teacher;

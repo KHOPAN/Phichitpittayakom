@@ -9,6 +9,10 @@ import java.util.Optional;
 import org.jsoup.Jsoup;
 import org.jsoup.Connection.Response;
 
+import th.ac.phichitpittayakom.guild.Guild;
+import th.ac.phichitpittayakom.guild.GuildInfo;
+import th.ac.phichitpittayakom.teacher.Teacher;
+
 public class TeacherAPI {
 	TeacherAPI() {}
 

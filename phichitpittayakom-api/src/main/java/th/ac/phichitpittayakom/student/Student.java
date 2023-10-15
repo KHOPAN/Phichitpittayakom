@@ -1,4 +1,4 @@
-package th.ac.phichitpittayakom;
+package th.ac.phichitpittayakom.student;
 
 import th.ac.phichitpittayakom.grade.Grade;
 import th.ac.phichitpittayakom.name.Name;
@@ -10,7 +10,15 @@ public class Student {
 	private final int number;
 	private final long guildIdentifier;
 
-	Student(long studentIdentifier, Name name, Grade grade, int number, long guildIdentifier) {
+	public Student() {
+		this.studentIdentifier = 0L;
+		this.name = new Name();
+		this.grade = new Grade();
+		this.number = 0;
+		this.guildIdentifier = 0L;
+	}
+
+	public Student(long studentIdentifier, Name name, Grade grade, int number, long guildIdentifier) {
 		this.studentIdentifier = studentIdentifier;
 		this.name = name;
 		this.grade = grade;

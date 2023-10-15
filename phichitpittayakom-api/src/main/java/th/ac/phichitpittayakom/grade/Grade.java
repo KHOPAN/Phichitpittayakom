@@ -9,7 +9,7 @@ public class Grade {
 		this.room = 0;
 	}
 
-	Grade(int grade, int room) {
+	public Grade(int grade, int room) {
 		this.grade = grade;
 		this.room = room;
 	}

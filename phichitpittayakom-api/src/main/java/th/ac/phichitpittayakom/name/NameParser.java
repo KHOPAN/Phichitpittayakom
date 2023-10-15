@@ -13,21 +13,21 @@ public class NameParser {
 		NamePrefix[] namePrefixes = NamePrefix.values();
 
 		for(NamePrefix namePrefix : namePrefixes) {
-			String stringPrefix = namePrefix.getStringRepresentation();
+			for(String stringPrefix : namePrefix.getStringRepresentations()) {
+				if(name.startsWith(stringPrefix)) {
+					String nameText = "";
 
-			if(name.startsWith(stringPrefix)) {
-				String nameText = "";
+					try {
+						nameText = name.substring(stringPrefix.length()).trim();
+					} catch(IndexOutOfBoundsException Exception) {
+						this.name = new Name();
+						return;
+					}
 
-				try {
-					nameText = name.substring(stringPrefix.length()).trim();
-				} catch(IndexOutOfBoundsException Exception) {
-					this.name = new Name();
+					String[] names = nameText.split("\\s+");
+					this.name = new Name(namePrefix, names);
 					return;
 				}
-
-				String[] names = nameText.split("\\s+");
-				this.name = new Name(namePrefix, names);
-				return;
 			}
 		}
 

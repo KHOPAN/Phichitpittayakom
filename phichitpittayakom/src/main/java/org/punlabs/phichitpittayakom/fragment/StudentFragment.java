@@ -19,11 +19,11 @@ import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 import org.punlabs.phichitpittayakom.activity.GuildActivity;
 import org.punlabs.phichitpittayakom.activity.TeacherActivity;
 
-import th.ac.phichitpittayakom.GuildInfo;
-import th.ac.phichitpittayakom.Student;
-import th.ac.phichitpittayakom.Teacher;
 import th.ac.phichitpittayakom.grade.Grade;
+import th.ac.phichitpittayakom.guild.GuildInfo;
 import th.ac.phichitpittayakom.name.Name;
+import th.ac.phichitpittayakom.student.Student;
+import th.ac.phichitpittayakom.teacher.Teacher;
 
 public class StudentFragment extends ContextedFragment {
 	private final Student student;

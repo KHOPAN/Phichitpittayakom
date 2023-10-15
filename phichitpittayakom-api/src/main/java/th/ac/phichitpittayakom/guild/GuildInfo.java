@@ -1,8 +1,10 @@
-package th.ac.phichitpittayakom;
+package th.ac.phichitpittayakom.guild;
 
 import th.ac.phichitpittayakom.guildclass.GuildClass;
 import th.ac.phichitpittayakom.guildtype.GuildType;
 import th.ac.phichitpittayakom.name.Name;
+import th.ac.phichitpittayakom.student.Student;
+import th.ac.phichitpittayakom.teacher.Teacher;
 
 public class GuildInfo extends Guild {
 	private final GuildType type;
@@ -21,7 +23,7 @@ public class GuildInfo extends Guild {
 		this.members = new Student[0];
 	}
 
-	GuildInfo(String name, long identifier, String location, GuildClass guildClass, int memberCount, int remaining, int minimumMembers, int maximumMembers, GuildType type, Teacher[] teachers, String subjectArea, String[] goals, String note, Student[] members) {
+	public GuildInfo(String name, long identifier, String location, GuildClass guildClass, int memberCount, int remaining, int minimumMembers, int maximumMembers, GuildType type, Teacher[] teachers, String subjectArea, String[] goals, String note, Student[] members) {
 		super(name, identifier, location, GuildInfo.convertTeacherName(teachers), guildClass, memberCount, remaining, minimumMembers, maximumMembers);
 		this.type = type;
 		this.subjectArea = subjectArea;

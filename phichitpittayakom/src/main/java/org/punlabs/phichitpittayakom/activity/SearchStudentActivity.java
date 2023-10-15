@@ -32,11 +32,11 @@ import java.util.Optional;
 
 import dev.oneuiproject.oneui.widget.RoundLinearLayout;
 import dev.oneuiproject.oneui.widget.Separator;
-import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Phichitpittayakom;
-import th.ac.phichitpittayakom.Student;
+import th.ac.phichitpittayakom.guild.GuildInfo;
 import th.ac.phichitpittayakom.nationalid.NationalID;
 import th.ac.phichitpittayakom.nationalid.NationalIDParser;
+import th.ac.phichitpittayakom.student.Student;
 
 public class SearchStudentActivity extends AppCompatActivity implements IFragmentActivity {
 	private int mode;

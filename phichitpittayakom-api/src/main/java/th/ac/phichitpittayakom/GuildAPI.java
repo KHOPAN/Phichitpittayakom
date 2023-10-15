@@ -14,6 +14,8 @@ import org.jsoup.select.Elements;
 import th.ac.phichitpittayakom.goal.GoalParser;
 import th.ac.phichitpittayakom.grade.Grade;
 import th.ac.phichitpittayakom.grade.GradeParser;
+import th.ac.phichitpittayakom.guild.Guild;
+import th.ac.phichitpittayakom.guild.GuildInfo;
 import th.ac.phichitpittayakom.guildclass.GuildClass;
 import th.ac.phichitpittayakom.guildclass.GuildClassParser;
 import th.ac.phichitpittayakom.guildtype.GuildType;
@@ -22,6 +24,8 @@ import th.ac.phichitpittayakom.name.Name;
 import th.ac.phichitpittayakom.name.NameListParser;
 import th.ac.phichitpittayakom.name.NameParser;
 import th.ac.phichitpittayakom.nationalid.NationalIDParser;
+import th.ac.phichitpittayakom.student.Student;
+import th.ac.phichitpittayakom.teacher.Teacher;
 
 public class GuildAPI {
 	GuildAPI() {}
@@ -163,6 +167,7 @@ public class GuildAPI {
 
 			return Optional.of(new GuildInfo(name, guildIdentifier, location, guildClass, memberCount, remaining, minimumMembers, maximumMembers, type, teachers, subjectArea, goals, note, studentList.toArray(new Student[0])));
 		} catch(IndexOutOfBoundsException | NumberFormatException ignored) {
+			ignored.printStackTrace();
 			return Optional.empty();
 		}
 	}

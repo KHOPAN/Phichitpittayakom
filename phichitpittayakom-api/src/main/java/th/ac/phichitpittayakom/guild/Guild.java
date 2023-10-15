@@ -1,7 +1,8 @@
-package th.ac.phichitpittayakom;
+package th.ac.phichitpittayakom.guild;
 
 import java.util.Optional;
 
+import th.ac.phichitpittayakom.Phichitpittayakom;
 import th.ac.phichitpittayakom.guildclass.GuildClass;
 import th.ac.phichitpittayakom.name.Name;
 
@@ -28,7 +29,7 @@ public class Guild {
 		this.maximumMembers = 0;
 	}
 
-	Guild(String name, long identifier, String location, Name[] teacherNames, GuildClass guildClass, int memberCount, int remainingCount, int minimumMembers, int maximumMembers) {
+	public Guild(String name, long identifier, String location, Name[] teacherNames, GuildClass guildClass, int memberCount, int remainingCount, int minimumMembers, int maximumMembers) {
 		this.name = name;
 		this.identifier = identifier;
 		this.location = location;

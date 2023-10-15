@@ -8,7 +8,7 @@ import org.punlabs.phichitpittayakom.fragment.ListFragment;
 import java.util.List;
 
 import th.ac.phichitpittayakom.Phichitpittayakom;
-import th.ac.phichitpittayakom.Student;
+import th.ac.phichitpittayakom.student.Student;
 
 public class AllStudentActivity extends FragmentedActivity {
 	public AllStudentActivity() {

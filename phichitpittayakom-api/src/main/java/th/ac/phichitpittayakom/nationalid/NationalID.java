@@ -33,7 +33,7 @@ public class NationalID {
 		this.isValid = false;
 	}
 
-	NationalID(int firstDigit, int secondDigit, int thirdDigit, int forthDigit, int fifthDigit, int sixthDigit, int seventhDigit, int eighthDigit, int ninthDigit, int tenthDigit, int eleventhDigit, int twelfthDigit, int checksum) {
+	public NationalID(int firstDigit, int secondDigit, int thirdDigit, int forthDigit, int fifthDigit, int sixthDigit, int seventhDigit, int eighthDigit, int ninthDigit, int tenthDigit, int eleventhDigit, int twelfthDigit, int checksum) {
 		this.firstDigit = firstDigit;
 		this.secondDigit = secondDigit;
 		this.thirdDigit = thirdDigit;

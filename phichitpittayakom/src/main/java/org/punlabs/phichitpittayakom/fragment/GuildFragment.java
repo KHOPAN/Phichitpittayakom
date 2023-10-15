@@ -20,9 +20,9 @@ import org.punlabs.phichitpittayakom.activity.TeacherActivity;
 
 import java.util.Locale;
 
-import th.ac.phichitpittayakom.GuildInfo;
-import th.ac.phichitpittayakom.Student;
-import th.ac.phichitpittayakom.Teacher;
+import th.ac.phichitpittayakom.guild.GuildInfo;
+import th.ac.phichitpittayakom.student.Student;
+import th.ac.phichitpittayakom.teacher.Teacher;
 
 public class GuildFragment extends ContextedFragment {
 	private final GuildInfo guild;

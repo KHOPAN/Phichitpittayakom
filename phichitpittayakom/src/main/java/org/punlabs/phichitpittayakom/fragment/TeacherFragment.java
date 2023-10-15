@@ -24,9 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.oneuiproject.oneui.widget.RoundLinearLayout;
-import th.ac.phichitpittayakom.GuildInfo;
-import th.ac.phichitpittayakom.Teacher;
+import th.ac.phichitpittayakom.guild.GuildInfo;
 import th.ac.phichitpittayakom.nationalid.NationalID;
+import th.ac.phichitpittayakom.teacher.Teacher;
 
 public class TeacherFragment extends ContextedFragment {
 	private final Teacher teacher;

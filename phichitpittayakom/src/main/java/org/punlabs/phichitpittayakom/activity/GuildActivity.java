@@ -12,9 +12,9 @@ import org.punlabs.phichitpittayakom.fragment.GuildFragment;
 import java.util.Locale;
 import java.util.Optional;
 
-import th.ac.phichitpittayakom.Guild;
-import th.ac.phichitpittayakom.GuildInfo;
 import th.ac.phichitpittayakom.Phichitpittayakom;
+import th.ac.phichitpittayakom.guild.Guild;
+import th.ac.phichitpittayakom.guild.GuildInfo;
 
 public class GuildActivity extends FragmentedActivity {
 	private static Guild Guild;
