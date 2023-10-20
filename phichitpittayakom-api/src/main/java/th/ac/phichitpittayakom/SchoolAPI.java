@@ -76,7 +76,7 @@ public class SchoolAPI {
 				leaderText = list.get(2).text().trim();
 
 				if(leaderText.startsWith("เบอร์โทร")) {
-					leaderText = "";
+					leaderText = leaderPosition;
 				}
 			} else {
 				leaderText = div.select("font").text().trim();
@@ -87,14 +87,17 @@ public class SchoolAPI {
 
 			for(int i = 1; i < data.size(); i++) {
 				Element element = data.get(i);
-				Name name = NameParser.parse(element.ownText());
+				List<TextNode> nodeList = new ArrayList<>();
+				nodeList.addAll(element.textNodes());
+				nodeList.removeIf(node -> node.isBlank());
+				Name name = NameParser.parse(nodeList.get(0).text());
 				String position = element.select("font").text().trim();
-				String imageIdentifier = element.select("a").attr("href");
-				String personIdentifier = element.select("img").attr("src");
+				String personIdentifier = element.select("a").attr("href");
+				String imageIdentifier = element.select("img").attr("src");
 				personList.add(new Person(name, position, imageIdentifier, personIdentifier));
 			}
 
-			return Optional.of(new MAPSectionInfo(title, mapSectionIdentifier, leaderPerson, personList.toArray(new Person[0])));
+			return Optional.of(new MAPSectionInfo(title, mapSectionIdentifier, leaderPerson, personList.toArray(new Person[0]), leaderText));
 		} catch(IndexOutOfBoundsException | NullPointerException ignored) {
 			return Optional.empty();
 		}
