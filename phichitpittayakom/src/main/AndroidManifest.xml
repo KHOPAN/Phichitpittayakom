@@ -6,7 +6,8 @@
         android:supportsRtl="true"
         android:icon="@mipmap/launcher_icon"
         android:roundIcon="@mipmap/launcher_icon"
-        android:theme="@style/OneUITheme">
+        android:theme="@style/OneUITheme"
+        android:usesCleartextTraffic="true">
         <meta-data android:name="SamsungBasicInteraction"
             android:value="SEP10" />
 
@@ -41,5 +42,8 @@
         <activity android:name="org.punlabs.phichitpittayakom.activity.GuildActivity" />
         <activity android:name="org.punlabs.phichitpittayakom.activity.AllTeacherActivity" />
         <activity android:name="org.punlabs.phichitpittayakom.activity.TeacherActivity" />
+        <activity android:name="org.punlabs.phichitpittayakom.activity.MAPActivity" />
+        <activity android:name="org.punlabs.phichitpittayakom.activity.MAPSectionActivity" />
+        <activity android:name="org.punlabs.phichitpittayakom.activity.PersonActivity" />
     </application>
 </manifest>

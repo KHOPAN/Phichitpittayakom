@@ -14,6 +14,7 @@ import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 import org.punlabs.phichitpittayakom.activity.AllGuildActivity;
 import org.punlabs.phichitpittayakom.activity.AllStudentActivity;
 import org.punlabs.phichitpittayakom.activity.AllTeacherActivity;
+import org.punlabs.phichitpittayakom.activity.MAPActivity;
 import org.punlabs.phichitpittayakom.activity.SearchStudentActivity;
 
 public class PhichitpittayakomApplication extends AppCompatActivity {
@@ -30,6 +31,8 @@ public class PhichitpittayakomApplication extends AppCompatActivity {
 		builder.card().title(this.getString(R.string.allStudent)).action(cardView -> this.startActivity(new Intent(this, AllStudentActivity.class)));
 		builder.card().title(this.getString(R.string.allGuild)).action(cardView -> this.startActivity(new Intent(this, AllGuildActivity.class)));
 		builder.card().title(this.getString(R.string.allTeacher)).action(cardView -> this.startActivity(new Intent(this, AllTeacherActivity.class)));
+		builder.separate();
+		builder.card().title(this.getString(R.string.managementAndPersonnel)).action(cacrdView -> this.startActivity(new Intent(this, MAPActivity.class)));
 	}
 
 	private void searchActivity(CardBuilder builder, @StringRes int resource, int mode) {

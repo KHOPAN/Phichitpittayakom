@@ -15,6 +15,7 @@
     <string name="allStudent">นักเรียนทั้งหมด</string>
     <string name="allGuild">ชุมนุมทั้งหมด</string>
     <string name="allTeacher">คุณครูทั้งหมด</string>
+    <string name="managementAndPersonnel">ฝ่ายบริหารและบุคลากร</string>
 
     <!-- SearchStudentActivity -->
     <string name="searchStudentByStudentIdentifier">ค้นหานักเรียนโดยเลขประจำตัวนักเรียน</string>
@@ -64,4 +65,7 @@
     <!-- TeacherFragment -->
     <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกับ</string>
     <string name="image">รูป</string>
+
+    <!-- PersonFragment -->
+    <string name="position">ตำแหน่ง</string>
 </resources>
