@@ -6,12 +6,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.khopan.api.common.activity.FragmentedActivity;
+import com.khopan.api.common.fragment.SingleCenterTextFragment;
+import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
 import org.punlabs.phichitpittayakom.fragment.PersonFragment;
 
 import java.util.Optional;
 
 import th.ac.phichitpittayakom.person.Person;
+import th.ac.phichitpittayakom.person.PersonInfo;
 
 public class PersonActivity extends FragmentedActivity {
 	private static Person Person;
@@ -35,7 +38,15 @@ public class PersonActivity extends FragmentedActivity {
 		this.loading();
 		Person person = PersonActivity.Person;
 		this.internet(() -> new Thread(() -> {
-			Optional<byte[]> imageOptional = person.getImage();
+			Optional<PersonInfo> personOptional = person.getAdditionalInfo();
+
+			if(!personOptional.isPresent()) {
+				this.setFragment(new SingleCenterTextFragment(this.getString(R.string.noSearchResult)));
+				return;
+			}
+
+			PersonInfo personInformation = personOptional.get();
+			Optional<byte[]> imageOptional = personInformation.getImage();
 			Bitmap image = null;
 
 			if(imageOptional.isPresent()) {
@@ -43,7 +54,7 @@ public class PersonActivity extends FragmentedActivity {
 				image = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
 			}
 
-			this.setFragment(new PersonFragment(person, image));
+			this.setFragment(new PersonFragment(personInformation, image));
 		}).start());
 	}
 

@@ -68,4 +68,8 @@
 
     <!-- PersonFragment -->
     <string name="position">ตำแหน่ง</string>
+    <string name="education">วุฒิการศึกษา</string>
+    <string name="majors">วิชาเอก</string>
+    <string name="phone">เบอร์โทรศัพท์</string>
+    <string name="email">อีเมล์</string>
 </resources>

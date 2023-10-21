@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.core.widget.NestedScrollView;
 
 import com.khopan.api.common.card.CardBuilder;
@@ -19,13 +20,13 @@ import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 import org.punlabs.phichitpittayakom.view.AutoScaleImageView;
 
 import dev.oneuiproject.oneui.widget.RoundLinearLayout;
-import th.ac.phichitpittayakom.person.Person;
+import th.ac.phichitpittayakom.person.PersonInfo;
 
 public class PersonFragment extends ContextedFragment {
-	private final Person person;
+	private final PersonInfo person;
 	private final Bitmap image;
 
-	public PersonFragment(Person person, Bitmap image) {
+	public PersonFragment(PersonInfo person, Bitmap image) {
 		this.person = person;
 		this.image = image;
 	}
@@ -42,7 +43,12 @@ public class PersonFragment extends ContextedFragment {
 		CardBuilder builder = new CardBuilder(linearLayout, this.context);
 		StudentFragment.buildName(builder, this.context, this.person.getName());
 		builder.separate();
-		builder.card().title(this.person.getPosition()).summary(this.getString(R.string.position));
+		this.build(builder, this.person.getSubjectArea(), R.string.subjectArea);
+		this.build(builder, this.person.getPosition(), R.string.position);
+		this.build(builder, this.person.getEducation(), R.string.education);
+		this.build(builder, this.person.getMajors(), R.string.majors);
+		this.build(builder, this.person.getPhone(), R.string.phone);
+		this.build(builder, this.person.getEmail(), R.string.email);
 
 		if(this.image == null) {
 			return;
@@ -57,6 +63,14 @@ public class PersonFragment extends ContextedFragment {
 		AutoScaleImageView imageView = new AutoScaleImageView(this.context, this.image);
 		imageView.setLayoutParams(new RoundLinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 		imageLayout.addView(imageView);
+	}
+
+	private void build(CardBuilder builder, String title, @StringRes int summary) {
+		if(title == null || title.isEmpty()) {
+			return;
+		}
+
+		builder.card().title(title).summary(this.getString(summary));
 	}
 
 	@Nullable
