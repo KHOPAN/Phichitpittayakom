@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 import th.ac.phichitpittayakom.name.Name;
 import th.ac.phichitpittayakom.name.NameParser;
 import th.ac.phichitpittayakom.person.Person;
+import th.ac.phichitpittayakom.person.PersonInfo;
 import th.ac.phichitpittayakom.person.map.MAPSection;
 import th.ac.phichitpittayakom.person.map.MAPSectionInfo;
 import th.ac.phichitpittayakom.person.map.ManagementAndPersonnel;
@@ -119,5 +120,31 @@ public class SchoolAPI {
 		}
 
 		return Optional.of(data);
+	}
+
+	public Optional<PersonInfo> findPersonById(String personIdentifier) {
+		Document document;
+
+		try {
+			document = Jsoup.connect("http://phichitpittayakom.ac.th/" + personIdentifier).get();
+		} catch(IOException Exception) {
+			return Optional.empty();
+		}
+
+		try {
+			Elements tables = document.select(".content").get(0).select("tbody");
+			String subjectArea = tables.get(0).select("td").get(1).text();
+			Elements content = tables.get(3).select("tr");
+			Name name = NameParser.parse(content.get(0).select("td").get(1).text());
+			String position = content.get(1).select("td").get(1).text();
+			String education = content.get(2).select("td").get(1).text();
+			String majors = content.get(3).select("td").get(1).text();
+			String phone = content.get(4).select("td").get(1).text();
+			String email = content.get(5).select("td").get(1).text();
+			String imageIdentifier = tables.get(2).select("img").attr("src");
+			return Optional.of(new PersonInfo(name, position, imageIdentifier, personIdentifier, subjectArea, education, majors, phone, email));
+		} catch(IndexOutOfBoundsException | NullPointerException ignored) {
+			return Optional.empty();
+		}
 	}
 }

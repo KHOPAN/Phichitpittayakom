@@ -3,24 +3,31 @@ package th.ac.phichitpittayakom.person;
 import th.ac.phichitpittayakom.name.Name;
 
 public class PersonInfo extends Person {
+	private final String subjectArea;
 	private final String education;
 	private final String majors;
 	private final String phone;
 	private final String email;
 
 	public PersonInfo() {
+		this.subjectArea = "";
 		this.education = "";
 		this.majors = "";
 		this.phone = "";
 		this.email = "";
 	}
 
-	public PersonInfo(Name name, String position, String imageIdentifier, String personIdentifier, String education, String majors, String phone, String email) {
+	public PersonInfo(Name name, String position, String imageIdentifier, String personIdentifier, String subjectArea, String education, String majors, String phone, String email) {
 		super(name, position, imageIdentifier, personIdentifier);
+		this.subjectArea = subjectArea;
 		this.education = education;
 		this.majors = majors;
 		this.phone = phone;
 		this.email = email;
+	}
+
+	public String getSubjectArea() {
+		return this.subjectArea;
 	}
 
 	public String getEducation() {

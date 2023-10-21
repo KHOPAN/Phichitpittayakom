@@ -45,6 +45,10 @@ public class Person {
 		return this.personIdentifier;
 	}
 
+	public Optional<PersonInfo> getAdditionalInfo() {
+		return Phichitpittayakom.school.findPersonById(this.personIdentifier);
+	}
+
 	@Override
 	public String toString() {
 		return this.name + " " + this.position;
