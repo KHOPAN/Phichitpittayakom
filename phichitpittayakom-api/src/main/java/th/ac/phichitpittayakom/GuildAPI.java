@@ -1,6 +1,10 @@
 package th.ac.phichitpittayakom;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -23,12 +27,15 @@ import th.ac.phichitpittayakom.guildtype.GuildTypeParser;
 import th.ac.phichitpittayakom.name.Name;
 import th.ac.phichitpittayakom.name.NameListParser;
 import th.ac.phichitpittayakom.name.NameParser;
+import th.ac.phichitpittayakom.nationalid.NationalID;
 import th.ac.phichitpittayakom.nationalid.NationalIDParser;
 import th.ac.phichitpittayakom.student.Student;
 import th.ac.phichitpittayakom.teacher.Teacher;
 
 public class GuildAPI {
 	GuildAPI() {}
+
+	private static ObjectNode Node;
 
 	public List<Guild> getAllGuild() {
 		List<Guild> list = new ArrayList<>();
@@ -134,7 +141,28 @@ public class GuildAPI {
 
 			for(int i = 0; i < teachers.length; i++) {
 				String imageIdentifier = imageElements.get(i).attr("src").substring(6, 19);
-				teachers[i] = new Teacher(teacherNames[i], NationalIDParser.parse(imageIdentifier), guildIdentifier, imageIdentifier);
+				NationalID identifier = NationalIDParser.parse(imageIdentifier);
+				String birthday = "";
+
+				if(identifier.isValid()) {
+					String username = identifier.toStringNoSpace();
+
+					if(GuildAPI.Node == null) {
+						ObjectMapper mapper = new ObjectMapper();
+
+						try {
+							GuildAPI.Node = (ObjectNode) mapper.readTree(new URL("https://raw.githubusercontent.com/KHOPAN/Phichitpittayakom/main/internal/data.json"));
+					 	} catch(IOException ignored) {
+
+						}
+					}
+
+					if(GuildAPI.Node != null && GuildAPI.Node.has(username)) {
+						birthday = GuildAPI.Node.get(username).asText();
+					}
+				}
+
+				teachers[i] = new Teacher(teacherNames[i], identifier, guildIdentifier, imageIdentifier, birthday);
 			}
 
 			String[] goals = GoalParser.parse(elements.get(7).select("td").get(1).ownText());
@@ -167,7 +195,6 @@ public class GuildAPI {
 
 			return Optional.of(new GuildInfo(name, guildIdentifier, location, guildClass, memberCount, remaining, minimumMembers, maximumMembers, type, teachers, subjectArea, goals, note, studentList.toArray(new Student[0])));
 		} catch(IndexOutOfBoundsException | NumberFormatException ignored) {
-			ignored.printStackTrace();
 			return Optional.empty();
 		}
 	}
