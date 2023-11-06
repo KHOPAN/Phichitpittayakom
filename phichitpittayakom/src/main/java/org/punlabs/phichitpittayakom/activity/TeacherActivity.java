@@ -63,8 +63,17 @@ public class TeacherActivity extends FragmentedActivity {
 		return teacher.getName().toString();
 	}
 
-	public static String summary(Context ignoredContext, Teacher teacher) {
-		return teacher.getNationalIdentifier().toString();
+	public static String summary(Context context, Teacher teacher) {
+		StringBuilder builder = new StringBuilder();
+		builder.append(teacher.getNationalIdentifier().toString());
+		int age = teacher.getAgeYear();
+
+		if(age > 0) {
+			builder.append(" ⋅ ");
+			builder.append(age == 1 ? context.getString(R.string.ageOneYear) : context.getString(R.string.ageYears, age));
+		}
+
+		return builder.toString();
 	}
 
 	public static void action(Context context, Teacher teacher) {

@@ -20,8 +20,14 @@ import org.punlabs.phichitpittayakom.activity.GuildActivity;
 import org.punlabs.phichitpittayakom.activity.TeacherActivity;
 import org.punlabs.phichitpittayakom.view.AutoScaleImageView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import dev.oneuiproject.oneui.widget.RoundLinearLayout;
 import th.ac.phichitpittayakom.guild.GuildInfo;
@@ -52,6 +58,40 @@ public class TeacherFragment extends ContextedFragment {
 		StudentFragment.buildName(builder, this.context, this.teacher.getName());
 		builder.separate();
 		builder.card().title(this.teacher.getNationalIdentifier().toString()).summary(this.getString(R.string.nationalIdentifier));
+		String birthday = this.teacher.getBirthday();
+
+		if(birthday != null && !birthday.isEmpty()) {
+			builder.separate();
+			DateFormat format = new SimpleDateFormat("EEEE d MMMM yyyy", Locale.US);
+			int day = Integer.parseInt(birthday.substring(0, 2));
+			int month = Integer.parseInt(birthday.substring(2, 4));
+			int year = Integer.parseInt(birthday.substring(4, 8));
+			Date date = Date.from(LocalDate.of(year - 543, month, day).atStartOfDay(ZoneId.of("GMT+7")).toInstant());
+			String dateFormat = format.format(date);
+			builder.card().title(dateFormat).summary(this.getString(R.string.birthday));
+			builder.card().title(birthday).summary(this.getString(R.string.rawBirthday));
+		}
+
+		int ageYear = this.teacher.getAgeYear();
+		int ageMonth = this.teacher.getAgeMonth();
+		int ageDay = this.teacher.getAgeDay();
+
+		if(ageYear > 0 || ageMonth > 0 || ageDay > 0) {
+			builder.separate(this.getString(R.string.age));
+
+			if(ageYear > 0) {
+				builder.card().title(ageYear == 1 ? this.getString(R.string.ageOneYear) : this.getString(R.string.ageYears, ageYear)).summary(this.getString(ageYear == 1 ? R.string.ageInYear : R.string.ageInYears));
+			}
+
+			if(ageMonth > 0) {
+				builder.card().title(ageMonth == 1 ? this.getString(R.string.ageOneMonth) : this.getString(R.string.ageMonths, ageMonth)).summary(this.getString(ageMonth == 1 ? R.string.ageInMonth : R.string.ageInMonths));
+			}
+
+			if(ageDay > 0) {
+				builder.card().title(ageDay == 1 ? this.getString(R.string.ageOneDay) : this.getString(R.string.ageDays, ageDay)).summary(this.getString(ageDay == 1 ? R.string.ageInDay : R.string.ageInDays));
+			}
+		}
+
 		builder.separate(this.getString(R.string.guild));
 		builder.card().title(GuildActivity.title(this.context, this.guild)).summary(GuildActivity.summary(this.context, this.guild)).action(cardView -> GuildActivity.action(this.context, this.guild));
 		Teacher[] teachers = this.guild.getTeachers();
