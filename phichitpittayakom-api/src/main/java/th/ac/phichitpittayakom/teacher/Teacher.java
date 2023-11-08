@@ -1,7 +1,6 @@
 package th.ac.phichitpittayakom.teacher;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Optional;
 
 import th.ac.phichitpittayakom.Phichitpittayakom;
@@ -14,9 +13,7 @@ public class Teacher {
 	private final long guildIdentifier;
 	private final String imageIdentifier;
 	private final String birthday;
-	private final int ageYear;
-	private final int ageMonth;
-	private final int ageDay;
+	private final LocalDate birthdate;
 
 	public Teacher() {
 		this.name = new Name();
@@ -24,9 +21,7 @@ public class Teacher {
 		this.guildIdentifier = 0L;
 		this.imageIdentifier = "";
 		this.birthday = "";
-		this.ageYear = 0;
-		this.ageMonth = 0;
-		this.ageDay = 0;
+		this.birthdate = null;
 	}
 
 	public Teacher(Name name, NationalID nationalIdentifier, long guildIdentifier, String imageIdentifier, String birthday) {
@@ -37,16 +32,11 @@ public class Teacher {
 		this.birthday = birthday;
 
 		if(this.birthday == null || this.birthday.length() < 6) {
-			this.ageYear = 0;
-			this.ageMonth = 0;
-			this.ageDay = 0;
+			this.birthdate = null;
 			return;
 		}
 
-		Period period = Period.between(LocalDate.of(Integer.parseInt(this.birthday.substring(4, 8)) - 543, Integer.parseInt(this.birthday.substring(2, 4)), Integer.parseInt(this.birthday.substring(0, 2))), LocalDate.now());
-		this.ageYear = period.getYears();
-		this.ageMonth = period.getMonths();
-		this.ageDay = period.getDays();
+		this.birthdate = LocalDate.of(Integer.parseInt(this.birthday.substring(4, 8)) - 543, Integer.parseInt(this.birthday.substring(2, 4)), Integer.parseInt(this.birthday.substring(0, 2)));
 	}
 
 	public Name getName() {
@@ -73,16 +63,8 @@ public class Teacher {
 		return this.birthday;
 	}
 
-	public int getAgeYear() {
-		return this.ageYear;
-	}
-
-	public int getAgeMonth() {
-		return this.ageMonth;
-	}
-
-	public int getAgeDay() {
-		return this.ageDay;
+	public LocalDate getBirthdate() {
+		return this.birthdate;
 	}
 
 	@Override
