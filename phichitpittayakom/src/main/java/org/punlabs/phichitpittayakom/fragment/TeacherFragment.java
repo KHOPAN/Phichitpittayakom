@@ -53,6 +53,8 @@ public class TeacherFragment extends ContextedFragment {
 	private LocalDate birthdate;
 	private CardView ageView;
 	private CardView remainingView;
+	private CardView lifePercentageView;
+	private CardView remainingLifePercentageView;
 	private ScheduledFuture<?> future;
 
 	public TeacherFragment(Teacher teacher, GuildInfo guild, Bitmap image) {
@@ -103,6 +105,8 @@ public class TeacherFragment extends ContextedFragment {
 			builder.separate();
 			this.ageView = builder.card().summary(this.getString(R.string.age)).cardView();
 			this.remainingView = builder.card().summary(this.getString(R.string.remainingLifeTime)).cardView();
+			this.lifePercentageView = builder.card().summary(this.getString(R.string.lifePercentage)).cardView();
+			this.remainingLifePercentageView = builder.card().summary(this.getString(R.string.remainingLifePercentage)).cardView();
 			this.update();
 		}
 
@@ -154,6 +158,8 @@ public class TeacherFragment extends ContextedFragment {
 			return;
 		}
 
+		long epoch = this.birthdate.toEpochDay() * 86400000;
+		long currentTime = System.currentTimeMillis();
 		LocalDate now = LocalDate.now();
 		Period period = Period.between(this.birthdate, now).normalized();
 		ZonedDateTime dateTime = Instant.now().atZone(ZoneId.of("GMT+7"));
@@ -183,7 +189,8 @@ public class TeacherFragment extends ContextedFragment {
 
 		builder.append(String.format(Locale.US, "%02d:%02d:%02d.%03d", ageHour, ageMinute, ageSecond, ageMillisecond));
 		String ageText = builder.toString();
-		Period deathPeriod = this.teacher.getName().isFemale() ? Period.of(83, 0, 14) : Period.of(74, 6, 7);
+		boolean isFemale = this.teacher.getName().isFemale();
+		Period deathPeriod = isFemale ? Period.of(83, 0, 14) : Period.of(74, 6, 7);
 		deathPeriod = deathPeriod.minus(period).normalized();
 		int remainingYear = deathPeriod.getYears();
 		int remainingMonth = deathPeriod.getMonths();
@@ -211,9 +218,16 @@ public class TeacherFragment extends ContextedFragment {
 
 		builder.append(String.format(Locale.US, "%02d:%02d:%02d.%03d", remainingHour, remainingMinute, remainingSecond, remainingMillisecond));
 		String remainingText = builder.toString();
+		long ageTime = currentTime - epoch;
+		long total = isFemale ? 2618697600000L : 2349820800000L;
+		double percentage = (((double) ageTime) / ((double) total)) * 100.0d;
+		String percentageText = String.format(Locale.US, "%.10f%%", percentage);
+		String remainingPercentageText = String.format(Locale.US, "%.10f%%", 100.0d - percentage);
 		this.requireActivity().runOnUiThread(() -> {
 			this.ageView.setTitle(ageText);
 			this.remainingView.setTitle(remainingText);
+			this.lifePercentageView.setTitle(percentageText);
+			this.remainingLifePercentageView.setTitle(remainingPercentageText);
 		});
 	}
 

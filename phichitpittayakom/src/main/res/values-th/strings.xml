@@ -76,6 +76,8 @@
     <string name="ageDays">%d วัน</string>
     <string name="age">อายุ</string>
     <string name="remainingLifeTime">เวลาชีวิตที่เหลือ</string>
+    <string name="lifePercentage">ร้อยละของอายุ</string>
+    <string name="remainingLifePercentage">ร้อยละของอายุที่เหลืออยู่</string>
     <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกับ</string>
     <string name="image">รูป</string>
 

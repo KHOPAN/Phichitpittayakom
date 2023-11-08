@@ -76,6 +76,8 @@
     <string name="ageDays">%d Days</string>
     <string name="age">Age</string>
     <string name="remainingLifeTime">Remaining life time</string>
+    <string name="lifePercentage">Life percentage</string>
+    <string name="remainingLifePercentage">Remaining life percentage</string>
     <string name="guildMasterWith">Guild master with</string>
     <string name="image">Image</string>
 
