@@ -11,6 +11,8 @@ import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
 import org.punlabs.phichitpittayakom.fragment.TeacherFragment;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Optional;
 
 import th.ac.phichitpittayakom.Phichitpittayakom;
@@ -66,9 +68,11 @@ public class TeacherActivity extends FragmentedActivity {
 	public static String summary(Context context, Teacher teacher) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(teacher.getNationalIdentifier().toString());
-		int age = teacher.getAgeYear();
+		LocalDate date = teacher.getBirthdate();
 
-		if(age > 0) {
+		if(date != null) {
+			Period period = Period.between(date, LocalDate.now());
+			int age = period.getYears();
 			builder.append(" ⋅ ");
 			builder.append(age == 1 ? context.getString(R.string.ageOneYear) : context.getString(R.string.ageYears, age));
 		}

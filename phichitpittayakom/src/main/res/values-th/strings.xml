@@ -69,17 +69,11 @@
     <!-- TeacherFragment -->
     <string name="birthday">วันเกิด</string>
     <string name="rawBirthday">วันเกิดที่ยังแปรรูป</string>
-    <string name="age">อายุ</string>
-    <string name="ageInYear">อายุเป็นปี</string>
-    <string name="ageInYears">อายุเป็นปี</string>
     <string name="ageOneMonth">1 เดือน</string>
     <string name="ageMonths">%d เดือน</string>
-    <string name="ageInMonth">อายุเป็นเดือน</string>
-    <string name="ageInMonths">อายุเป็นเดือน</string>
     <string name="ageOneDay">1 วัน</string>
     <string name="ageDays">%d วัน</string>
-    <string name="ageInDay">อายุเป็นวัน</string>
-    <string name="ageInDays">อายุเป็นวัน</string>
+    <string name="age">อายุ</string>
     <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกับ</string>
     <string name="image">รูป</string>
 

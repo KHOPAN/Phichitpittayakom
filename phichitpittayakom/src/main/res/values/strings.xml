@@ -69,17 +69,11 @@
     <!-- TeacherFragment -->
     <string name="birthday">Birthday</string>
     <string name="rawBirthday">Raw birthday</string>
-    <string name="age">Age</string>
-    <string name="ageInYear">Age in year</string>
-    <string name="ageInYears">Age in years</string>
     <string name="ageOneMonth">1 Month</string>
     <string name="ageMonths">%d Months</string>
-    <string name="ageInMonth">Age in month</string>
-    <string name="ageInMonths">Age in months</string>
     <string name="ageOneDay">1 Day</string>
     <string name="ageDays">%d Days</string>
-    <string name="ageInDay">Age in day</string>
-    <string name="ageInDays">Age in days</string>
+    <string name="age">Age</string>
     <string name="guildMasterWith">Guild master with</string>
     <string name="image">Image</string>
 
