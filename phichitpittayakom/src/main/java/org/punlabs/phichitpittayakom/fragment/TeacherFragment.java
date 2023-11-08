@@ -86,8 +86,17 @@ public class TeacherFragment extends ContextedFragment {
 			calendar.set(Calendar.YEAR, year - 543);
 			calendar.set(Calendar.MONTH, month - 1);
 			calendar.set(Calendar.DAY_OF_MONTH, day);
-			String dateFormat = format.format(calendar.getTime());
-			builder.card().title(dateFormat).summary(this.getString(R.string.birthday));
+			builder.card().title(format.format(calendar.getTime())).summary(this.getString(R.string.birthday));
+
+			if(this.teacher.getName().isFemale()) {
+				calendar.add(Calendar.YEAR, 83);
+				calendar.add(Calendar.SECOND, 21024);
+			} else {
+				calendar.add(Calendar.YEAR, 74);
+				calendar.add(Calendar.SECOND, 273312);
+			}
+
+			builder.card().title(format.format(calendar.getTime())).summary("Death Date");
 			builder.card().title(birthday).summary(this.getString(R.string.rawBirthday));
 			builder.separate();
 			this.ageView = builder.card().summary(this.getString(R.string.age)).cardView();
