@@ -68,6 +68,7 @@
 
     <!-- TeacherFragment -->
     <string name="birthday">Birthday</string>
+    <string name="deathDate">Death date</string>
     <string name="rawBirthday">Raw birthday</string>
     <string name="ageOneMonth">1 Month</string>
     <string name="ageMonths">%d Months</string>

@@ -98,7 +98,7 @@ public class TeacherFragment extends ContextedFragment {
 				calendar.add(Calendar.DAY_OF_MONTH, 7);
 			}
 
-			builder.card().title(format.format(calendar.getTime())).summary("Death Date");
+			builder.card().title(format.format(calendar.getTime())).summary(this.getString(R.string.deathDate));
 			builder.card().title(birthday).summary(this.getString(R.string.rawBirthday));
 			builder.separate();
 			this.ageView = builder.card().summary(this.getString(R.string.age)).cardView();

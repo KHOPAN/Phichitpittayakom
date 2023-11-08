@@ -68,6 +68,7 @@
 
     <!-- TeacherFragment -->
     <string name="birthday">วันเกิด</string>
+    <string name="deathDate">วันตาย</string>
     <string name="rawBirthday">วันเกิดที่ยังแปรรูป</string>
     <string name="ageOneMonth">1 เดือน</string>
     <string name="ageMonths">%d เดือน</string>
