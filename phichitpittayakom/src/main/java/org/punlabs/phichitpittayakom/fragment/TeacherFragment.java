@@ -52,6 +52,7 @@ public class TeacherFragment extends ContextedFragment {
 
 	private LocalDate birthdate;
 	private CardView ageView;
+	private CardView remainingView;
 	private ScheduledFuture<?> future;
 
 	public TeacherFragment(Teacher teacher, GuildInfo guild, Bitmap image) {
@@ -90,16 +91,18 @@ public class TeacherFragment extends ContextedFragment {
 
 			if(this.teacher.getName().isFemale()) {
 				calendar.add(Calendar.YEAR, 83);
-				calendar.add(Calendar.SECOND, 21024);
+				calendar.add(Calendar.DAY_OF_MONTH, 14);
 			} else {
 				calendar.add(Calendar.YEAR, 74);
-				calendar.add(Calendar.SECOND, 273312);
+				calendar.add(Calendar.MONTH, 6);
+				calendar.add(Calendar.DAY_OF_MONTH, 7);
 			}
 
 			builder.card().title(format.format(calendar.getTime())).summary("Death Date");
 			builder.card().title(birthday).summary(this.getString(R.string.rawBirthday));
 			builder.separate();
 			this.ageView = builder.card().summary(this.getString(R.string.age)).cardView();
+			this.remainingView = builder.card().summary(this.getString(R.string.remainingLifeTime)).cardView();
 			this.update();
 		}
 
@@ -152,7 +155,7 @@ public class TeacherFragment extends ContextedFragment {
 		}
 
 		LocalDate now = LocalDate.now();
-		Period period = Period.between(this.birthdate, now);
+		Period period = Period.between(this.birthdate, now).normalized();
 		ZonedDateTime dateTime = Instant.now().atZone(ZoneId.of("GMT+7"));
 		int ageYear = period.getYears();
 		int ageMonth = period.getMonths();
@@ -180,7 +183,38 @@ public class TeacherFragment extends ContextedFragment {
 
 		builder.append(String.format(Locale.US, "%02d:%02d:%02d.%03d", ageHour, ageMinute, ageSecond, ageMillisecond));
 		String ageText = builder.toString();
-		this.requireActivity().runOnUiThread(() -> this.ageView.setTitle(ageText));
+		Period deathPeriod = this.teacher.getName().isFemale() ? Period.of(83, 0, 14) : Period.of(74, 6, 7);
+		deathPeriod = deathPeriod.minus(period).normalized();
+		int remainingYear = deathPeriod.getYears();
+		int remainingMonth = deathPeriod.getMonths();
+		int remainingDay = deathPeriod.getDays();
+		int remainingHour = 23 - ageHour;
+		int remainingMinute = 59 - ageMinute;
+		int remainingSecond = 59 - ageSecond;
+		int remainingMillisecond = 999 - ageMillisecond;
+		builder = new StringBuilder();
+
+		if(remainingYear > 0) {
+			builder.append(remainingYear == 1 ? this.getString(R.string.ageOneYear) : this.getString(R.string.ageYears, remainingYear));
+			builder.append(' ');
+		}
+
+		if(remainingMonth > 0) {
+			builder.append(remainingMonth == 1 ? this.getString(R.string.ageOneMonth) : this.getString(R.string.ageMonths, remainingMonth));
+			builder.append(' ');
+		}
+
+		if(remainingDay > 0) {
+			builder.append(remainingDay == 1 ? this.getString(R.string.ageOneDay) : this.getString(R.string.ageDays, remainingDay));
+			builder.append(' ');
+		}
+
+		builder.append(String.format(Locale.US, "%02d:%02d:%02d.%03d", remainingHour, remainingMinute, remainingSecond, remainingMillisecond));
+		String remainingText = builder.toString();
+		this.requireActivity().runOnUiThread(() -> {
+			this.ageView.setTitle(ageText);
+			this.remainingView.setTitle(remainingText);
+		});
 	}
 
 	@Override

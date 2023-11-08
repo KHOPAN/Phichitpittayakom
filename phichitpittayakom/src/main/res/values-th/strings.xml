@@ -74,6 +74,7 @@
     <string name="ageOneDay">1 วัน</string>
     <string name="ageDays">%d วัน</string>
     <string name="age">อายุ</string>
+    <string name="remainingLifeTime">เวลาชีวิตที่เหลือ</string>
     <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกับ</string>
     <string name="image">รูป</string>
 
