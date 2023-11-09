@@ -23,25 +23,23 @@ import org.punlabs.phichitpittayakom.activity.GuildActivity;
 import org.punlabs.phichitpittayakom.activity.TeacherActivity;
 import org.punlabs.phichitpittayakom.view.AutoScaleImageView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import dev.oneuiproject.oneui.widget.RoundLinearLayout;
 import th.ac.phichitpittayakom.guild.GuildInfo;
+import th.ac.phichitpittayakom.name.Name;
 import th.ac.phichitpittayakom.nationalid.NationalID;
 import th.ac.phichitpittayakom.teacher.Teacher;
 
@@ -49,18 +47,22 @@ public class TeacherFragment extends ContextedFragment {
 	private final Teacher teacher;
 	private final GuildInfo guild;
 	private final Bitmap image;
+	private final DateTimeFormatter formatter;
 
 	private LocalDate birthdate;
+	private long birthdateEpoch;
+	private LocalDate deathDate;
+	private long deathDateEpoch;
 	private CardView ageView;
 	private CardView remainingView;
 	private CardView lifePercentageView;
-	private CardView remainingLifePercentageView;
 	private ScheduledFuture<?> future;
 
 	public TeacherFragment(Teacher teacher, GuildInfo guild, Bitmap image) {
 		this.teacher = teacher;
 		this.guild = guild;
 		this.image = image;
+		this.formatter = DateTimeFormatter.ofPattern("EEEE d MMMM yyyy", Locale.getDefault());
 	}
 
 	@Override
@@ -73,7 +75,8 @@ public class TeacherFragment extends ContextedFragment {
 		linearLayout.setOrientation(LinearLayout.VERTICAL);
 		scrollView.addView(linearLayout);
 		CardBuilder builder = new CardBuilder(linearLayout, this.context);
-		StudentFragment.buildName(builder, this.context, this.teacher.getName());
+		Name name = this.teacher.getName();
+		StudentFragment.buildName(builder, this.context, name);
 		builder.separate();
 		builder.card().title(this.teacher.getNationalIdentifier().toString()).summary(this.getString(R.string.nationalIdentifier));
 		String birthday = this.teacher.getBirthday();
@@ -81,32 +84,24 @@ public class TeacherFragment extends ContextedFragment {
 
 		if(birthday != null && !birthday.isEmpty() && this.birthdate != null) {
 			builder.separate();
-			DateFormat format = new SimpleDateFormat("EEEE d MMMM yyyy", Locale.US);
+			builder.card().title(birthday).summary(this.getString(R.string.rawBirthday));
+			builder.separate();
 			int day = Integer.parseInt(birthday.substring(0, 2));
 			int month = Integer.parseInt(birthday.substring(2, 4));
 			int year = Integer.parseInt(birthday.substring(4, 8));
-			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.of("GMT+7")));
-			calendar.set(Calendar.YEAR, year - 543);
-			calendar.set(Calendar.MONTH, month - 1);
-			calendar.set(Calendar.DAY_OF_MONTH, day);
-			builder.card().title(format.format(calendar.getTime())).summary(this.getString(R.string.birthday));
-
-			if(this.teacher.getName().isFemale()) {
-				calendar.add(Calendar.YEAR, 83);
-				calendar.add(Calendar.DAY_OF_MONTH, 14);
-			} else {
-				calendar.add(Calendar.YEAR, 74);
-				calendar.add(Calendar.MONTH, 6);
-				calendar.add(Calendar.DAY_OF_MONTH, 7);
-			}
-
-			builder.card().title(format.format(calendar.getTime())).summary(this.getString(R.string.deathDate));
-			builder.card().title(birthday).summary(this.getString(R.string.rawBirthday));
+			this.birthdate = LocalDate.of(year - 543, month, day);
+			this.birthdateEpoch = this.birthdate.toEpochDay() * 86400000L;
+			builder.card().title(this.formatter.format(this.birthdate)).summary(this.getString(R.string.birthday));
+			boolean female = name.isFemale();
+			Period deathAge = female ? Period.of(83, 0, 14) : Period.of(74, 6, 7);
+			this.deathDate = this.birthdate.plus(deathAge);
+			this.deathDateEpoch = this.deathDate.toEpochDay() * 86400000L;
+			builder.card().title(this.formatter.format(this.deathDate)).summary(this.getString(R.string.deathDate));
 			builder.separate();
 			this.ageView = builder.card().summary(this.getString(R.string.age)).cardView();
 			this.remainingView = builder.card().summary(this.getString(R.string.remainingLifeTime)).cardView();
+			builder.separate();
 			this.lifePercentageView = builder.card().summary(this.getString(R.string.lifePercentage)).cardView();
-			this.remainingLifePercentageView = builder.card().summary(this.getString(R.string.remainingLifePercentage)).cardView();
 			this.update();
 		}
 
@@ -158,77 +153,59 @@ public class TeacherFragment extends ContextedFragment {
 			return;
 		}
 
-		long epoch = this.birthdate.toEpochDay() * 86400000;
-		long currentTime = System.currentTimeMillis();
 		LocalDate now = LocalDate.now();
-		Period period = Period.between(this.birthdate, now).normalized();
+		long time = System.currentTimeMillis();
+		Period birthPeriod = Period.between(this.birthdate, now);
 		ZonedDateTime dateTime = Instant.now().atZone(ZoneId.of("GMT+7"));
-		int ageYear = period.getYears();
-		int ageMonth = period.getMonths();
-		int ageDay = period.getDays();
-		int ageHour = dateTime.get(ChronoField.HOUR_OF_DAY);
-		int ageMinute = dateTime.get(ChronoField.MINUTE_OF_HOUR);
-		int ageSecond = dateTime.get(ChronoField.SECOND_OF_MINUTE);
-		int ageMillisecond = dateTime.get(ChronoField.MILLI_OF_SECOND);
+		int hours = dateTime.get(ChronoField.HOUR_OF_DAY);
+		int minutes = dateTime.get(ChronoField.MINUTE_OF_HOUR);
+		int seconds = dateTime.get(ChronoField.SECOND_OF_MINUTE);
+		int milliseconds = dateTime.get(ChronoField.MILLI_OF_SECOND);
+		String birthText = this.formatDateTime(birthPeriod, hours, minutes, seconds, milliseconds);
+		Period remainingPeriod = Period.between(now, this.deathDate);
+		hours = 23 - hours;
+		minutes = 59 - minutes;
+		seconds = 59 - seconds;
+		milliseconds = 999 - milliseconds;
+		String remainingText = this.formatDateTime(remainingPeriod, hours, minutes, seconds, milliseconds);
+		long usedLifeTime = time - this.birthdateEpoch;
+		long totalLifeTime = this.deathDateEpoch - this.birthdateEpoch;
+		double lifePercentage = ((double) usedLifeTime) / ((double) totalLifeTime) * 100.0d;
+		String lifePercentageText = String.format(Locale.US, "%.10f%%", lifePercentage);
+		this.requireActivity().runOnUiThread(() -> {
+			try {
+				this.ageView.setTitle(birthText);
+				this.remainingView.setTitle(remainingText);
+				this.lifePercentageView.setTitle(lifePercentageText);
+			} catch(Throwable ignored) {
+
+			}
+		});
+	}
+
+	private String formatDateTime(Period period, int hour, int minute, int second, int millisecond) {
+		int years = period.getYears();
+		int months = period.getMonths();
+		int days = period.getDays();
 		StringBuilder builder = new StringBuilder();
 
-		if(ageYear > 0) {
-			builder.append(ageYear == 1 ? this.getString(R.string.ageOneYear) : this.getString(R.string.ageYears, ageYear));
+		if(years > 0) {
+			builder.append(years == 1 ? this.getString(R.string.ageOneYear) : this.getString(R.string.ageYears, years));
 			builder.append(' ');
 		}
 
-		if(ageMonth > 0) {
-			builder.append(ageMonth == 1 ? this.getString(R.string.ageOneMonth) : this.getString(R.string.ageMonths, ageMonth));
+		if(months > 0) {
+			builder.append(months == 1 ? this.getString(R.string.ageOneMonth) : this.getString(R.string.ageMonths, months));
 			builder.append(' ');
 		}
 
-		if(ageDay > 0) {
-			builder.append(ageDay == 1 ? this.getString(R.string.ageOneDay) : this.getString(R.string.ageDays, ageDay));
+		if(days > 0) {
+			builder.append(days == 1 ? this.getString(R.string.ageOneDay) : this.getString(R.string.ageDays, days));
 			builder.append(' ');
 		}
 
-		builder.append(String.format(Locale.US, "%02d:%02d:%02d.%03d", ageHour, ageMinute, ageSecond, ageMillisecond));
-		String ageText = builder.toString();
-		boolean isFemale = this.teacher.getName().isFemale();
-		Period deathPeriod = isFemale ? Period.of(83, 0, 14) : Period.of(74, 6, 7);
-		deathPeriod = deathPeriod.minus(period).normalized();
-		int remainingYear = deathPeriod.getYears();
-		int remainingMonth = deathPeriod.getMonths();
-		int remainingDay = deathPeriod.getDays();
-		int remainingHour = 23 - ageHour;
-		int remainingMinute = 59 - ageMinute;
-		int remainingSecond = 59 - ageSecond;
-		int remainingMillisecond = 999 - ageMillisecond;
-		builder = new StringBuilder();
-
-		if(remainingYear > 0) {
-			builder.append(remainingYear == 1 ? this.getString(R.string.ageOneYear) : this.getString(R.string.ageYears, remainingYear));
-			builder.append(' ');
-		}
-
-		if(remainingMonth > 0) {
-			builder.append(remainingMonth == 1 ? this.getString(R.string.ageOneMonth) : this.getString(R.string.ageMonths, remainingMonth));
-			builder.append(' ');
-		}
-
-		if(remainingDay > 0) {
-			builder.append(remainingDay == 1 ? this.getString(R.string.ageOneDay) : this.getString(R.string.ageDays, remainingDay));
-			builder.append(' ');
-		}
-
-		builder.append(String.format(Locale.US, "%02d:%02d:%02d.%03d", remainingHour, remainingMinute, remainingSecond, remainingMillisecond));
-		String remainingText = builder.toString();
-		long ageTime = currentTime - epoch;
-		long total = isFemale ? 2618697600000L : 2349820800000L;
-		double percentage = (((double) ageTime) / ((double) total)) * 100.0d;
-		String percentageText = String.format(Locale.US, "%.10f%%", percentage);
-		String remainingPercentageText = String.format(Locale.US, "%.10f%%", 100.0d - percentage);
-		this.requireActivity().runOnUiThread(() -> {
-			this.ageView.setTitle(ageText);
-			this.remainingView.setTitle(remainingText);
-			this.lifePercentageView.setTitle(percentageText);
-			this.remainingLifePercentageView.setTitle(remainingPercentageText);
-		});
+		builder.append(String.format(Locale.US, "%02d:%02d:%02d.%03d", hour, minute, second, millisecond));
+		return builder.toString();
 	}
 
 	@Override

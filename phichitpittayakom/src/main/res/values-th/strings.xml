@@ -67,9 +67,9 @@
     <string name="ageYears">%d ปี</string>
 
     <!-- TeacherFragment -->
+    <string name="rawBirthday">วันเกิดที่ยังแปรรูป</string>
     <string name="birthday">วันเกิด</string>
     <string name="deathDate">วันตาย</string>
-    <string name="rawBirthday">วันเกิดที่ยังแปรรูป</string>
     <string name="ageOneMonth">1 เดือน</string>
     <string name="ageMonths">%d เดือน</string>
     <string name="ageOneDay">1 วัน</string>
@@ -77,7 +77,6 @@
     <string name="age">อายุ</string>
     <string name="remainingLifeTime">เวลาชีวิตที่เหลือ</string>
     <string name="lifePercentage">ร้อยละของอายุ</string>
-    <string name="remainingLifePercentage">ร้อยละของอายุที่เหลืออยู่</string>
     <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกับ</string>
     <string name="image">รูป</string>
 
