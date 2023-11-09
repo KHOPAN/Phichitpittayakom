@@ -70,13 +70,16 @@
     <string name="rawBirthday">วันเกิดที่ยังแปรรูป</string>
     <string name="birthday">วันเกิด</string>
     <string name="deathDate">วันตาย</string>
+    <string name="retireDate">วันเกษียณอายุราชการ</string>
     <string name="ageOneMonth">1 เดือน</string>
     <string name="ageMonths">%d เดือน</string>
     <string name="ageOneDay">1 วัน</string>
     <string name="ageDays">%d วัน</string>
     <string name="age">อายุ</string>
     <string name="remainingLifeTime">เวลาชีวิตที่เหลือ</string>
+    <string name="remainingWorkTime">เวลาที่เหลือก่อนเกษียณอายุราชการ</string>
     <string name="lifePercentage">ร้อยละของอายุ</string>
+    <string name="retirePercentage">ร้อยละของเวลาก่อนเกษียณอายุราชการ</string>
     <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกับ</string>
     <string name="image">รูป</string>
 

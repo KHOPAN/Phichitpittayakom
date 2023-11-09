@@ -53,9 +53,13 @@ public class TeacherFragment extends ContextedFragment {
 	private long birthdateEpoch;
 	private LocalDate deathDate;
 	private long deathDateEpoch;
+	private LocalDate retireDate;
+	private long retireDateEpoch;
 	private CardView ageView;
 	private CardView remainingView;
+	private CardView retireRemainingView;
 	private CardView lifePercentageView;
+	private CardView retirePercentageView;
 	private ScheduledFuture<?> future;
 
 	public TeacherFragment(Teacher teacher, GuildInfo guild, Bitmap image) {
@@ -83,7 +87,6 @@ public class TeacherFragment extends ContextedFragment {
 		this.birthdate = this.teacher.getBirthdate();
 
 		if(birthday != null && !birthday.isEmpty() && this.birthdate != null) {
-			builder.separate();
 			builder.card().title(birthday).summary(this.getString(R.string.rawBirthday));
 			builder.separate();
 			int day = Integer.parseInt(birthday.substring(0, 2));
@@ -97,11 +100,16 @@ public class TeacherFragment extends ContextedFragment {
 			this.deathDate = this.birthdate.plus(deathAge);
 			this.deathDateEpoch = this.deathDate.toEpochDay() * 86400000L;
 			builder.card().title(this.formatter.format(this.deathDate)).summary(this.getString(R.string.deathDate));
+			this.retireDate = this.birthdate.plus(Period.of(60, 0, 0));
+			this.retireDateEpoch = this.retireDate.toEpochDay() * 86400000L;
+			builder.card().title(this.formatter.format(this.retireDate)).summary(this.getString(R.string.retireDate));
 			builder.separate();
 			this.ageView = builder.card().summary(this.getString(R.string.age)).cardView();
 			this.remainingView = builder.card().summary(this.getString(R.string.remainingLifeTime)).cardView();
+			this.retireRemainingView = builder.card().summary(this.getString(R.string.remainingWorkTime)).cardView();
 			builder.separate();
 			this.lifePercentageView = builder.card().summary(this.getString(R.string.lifePercentage)).cardView();
+			this.retirePercentageView = builder.card().summary(this.getString(R.string.retirePercentage)).cardView();
 			this.update();
 		}
 
@@ -168,15 +176,22 @@ public class TeacherFragment extends ContextedFragment {
 		seconds = 59 - seconds;
 		milliseconds = 999 - milliseconds;
 		String remainingText = this.formatDateTime(remainingPeriod, hours, minutes, seconds, milliseconds);
+		Period retirePeriod = Period.between(now, this.retireDate);
+		String retireText = this.formatDateTime(retirePeriod, hours, minutes, seconds, milliseconds);
 		long usedLifeTime = time - this.birthdateEpoch;
 		long totalLifeTime = this.deathDateEpoch - this.birthdateEpoch;
 		double lifePercentage = ((double) usedLifeTime) / ((double) totalLifeTime) * 100.0d;
 		String lifePercentageText = String.format(Locale.US, "%.10f%%", lifePercentage);
+		long totalWorkTime = this.retireDateEpoch - this.birthdateEpoch;
+		double workPercentage = ((double) usedLifeTime) / ((double) totalWorkTime) * 100.0d;
+		String workPercentageText = String.format(Locale.US, "%.10f%%", workPercentage);
 		this.requireActivity().runOnUiThread(() -> {
 			try {
 				this.ageView.setTitle(birthText);
 				this.remainingView.setTitle(remainingText);
+				this.retireRemainingView.setTitle(retireText);
 				this.lifePercentageView.setTitle(lifePercentageText);
+				this.retirePercentageView.setTitle(workPercentageText);
 			} catch(Throwable ignored) {
 
 			}

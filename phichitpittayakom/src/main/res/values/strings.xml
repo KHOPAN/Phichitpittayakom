@@ -70,13 +70,16 @@
     <string name="rawBirthday">Raw birthday</string>
     <string name="birthday">Birthday</string>
     <string name="deathDate">Death date</string>
+    <string name="retireDate">Retire date</string>
     <string name="ageOneMonth">1 Month</string>
     <string name="ageMonths">%d Months</string>
     <string name="ageOneDay">1 Day</string>
     <string name="ageDays">%d Days</string>
     <string name="age">Age</string>
     <string name="remainingLifeTime">Remaining life time</string>
+    <string name="remainingWorkTime">Remaining work time until retire</string>
     <string name="lifePercentage">Life percentage</string>
+    <string name="retirePercentage">Retire percentage</string>
     <string name="guildMasterWith">Guild master with</string>
     <string name="image">Image</string>
 
