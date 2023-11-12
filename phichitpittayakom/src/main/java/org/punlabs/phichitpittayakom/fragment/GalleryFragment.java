@@ -14,7 +14,11 @@ import androidx.core.widget.NestedScrollView;
 import com.khopan.api.common.card.CardBuilder;
 import com.khopan.api.common.fragment.ContextedFragment;
 import com.khopan.api.common.utils.LayoutUtils;
+import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
+import org.punlabs.phichitpittayakom.view.AutoScaleImageView;
+
+import dev.oneuiproject.oneui.widget.RoundLinearLayout;
 import th.ac.phichitpittayakom.gallery.GalleryDetail;
 
 public class GalleryFragment extends ContextedFragment {
@@ -45,7 +49,15 @@ public class GalleryFragment extends ContextedFragment {
 		}
 
 		for(Bitmap bitmap : this.images) {
-
+			builder.separate();
+			RoundLinearLayout imageLayout = new RoundLinearLayout(this.context);
+			imageLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+			imageLayout.setOrientation(RoundLinearLayout.VERTICAL);
+			imageLayout.setBackgroundColor(this.context.getColor(R.color.oui_background_color));
+			linearLayout.addView(imageLayout);
+			AutoScaleImageView imageView = new AutoScaleImageView(this.context, bitmap);
+			imageView.setLayoutParams(new RoundLinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+			imageLayout.addView(imageView);
 		}
 	}
 
