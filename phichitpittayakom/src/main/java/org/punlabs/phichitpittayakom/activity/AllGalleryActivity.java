@@ -14,8 +14,8 @@ import java.util.List;
 import th.ac.phichitpittayakom.Phichitpittayakom;
 import th.ac.phichitpittayakom.gallery.Gallery;
 
-public class GalleryActivity extends FragmentedActivity {
-	public GalleryActivity() {
+public class AllGalleryActivity extends FragmentedActivity {
+	public AllGalleryActivity() {
 		super("", "", "");
 	}
 
