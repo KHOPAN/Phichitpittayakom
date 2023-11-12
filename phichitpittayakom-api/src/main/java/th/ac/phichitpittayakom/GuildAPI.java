@@ -1,10 +1,8 @@
 package th.ac.phichitpittayakom;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,6 +12,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import th.ac.phichitpittayakom.goal.GoalParser;
 import th.ac.phichitpittayakom.grade.Grade;
@@ -151,8 +152,8 @@ public class GuildAPI {
 						ObjectMapper mapper = new ObjectMapper();
 
 						try {
-							GuildAPI.Node = (ObjectNode) mapper.readTree(new URL("https://raw.githubusercontent.com/KHOPAN/Phichitpittayakom/main/internal/data.json"));
-					 	} catch(IOException ignored) {
+							GuildAPI.Node = (ObjectNode) mapper.readTree(new URI("https://raw.githubusercontent.com/KHOPAN/Phichitpittayakom/main/internal/data.json").toURL());
+						} catch(IOException | URISyntaxException ignored) {
 
 						}
 					}

@@ -1,13 +1,9 @@
 package th.ac.phichitpittayakom;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import org.jsoup.Jsoup;
-import org.jsoup.Connection.Response;
 
 import th.ac.phichitpittayakom.guild.Guild;
 import th.ac.phichitpittayakom.guild.GuildInfo;
@@ -46,24 +42,6 @@ public class TeacherAPI {
 
 		teacherList.sort(Teacher :: compare);
 		return teacherList;
-	}
-
-	public Optional<byte[]> findTeacherImageById(String imageIdentifier) {
-		Response response;
-
-		try {
-			response = Jsoup.connect("https://sppk.sangsiri.net/activity/files/" + imageIdentifier + ".jpg").ignoreContentType(true).execute();
-		} catch(IOException ignored) {
-			return Optional.empty();
-		}
-
-		byte[] data = response.bodyAsBytes();
-
-		if(data == null || data.length == 0) {
-			return Optional.empty();
-		}
-
-		return Optional.of(data);
 	}
 
 	@Override

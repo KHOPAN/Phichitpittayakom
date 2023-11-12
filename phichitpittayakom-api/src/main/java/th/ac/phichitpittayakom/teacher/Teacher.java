@@ -56,7 +56,7 @@ public class Teacher {
 	}
 
 	public Optional<byte[]> getImage() {
-		return Phichitpittayakom.teacher.findTeacherImageById(this.imageIdentifier);
+		return Phichitpittayakom.school.findImageById(this.imageIdentifier);
 	}
 
 	public String getBirthday() {

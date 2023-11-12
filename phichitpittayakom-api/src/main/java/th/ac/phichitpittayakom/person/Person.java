@@ -38,7 +38,7 @@ public class Person {
 	}
 
 	public Optional<byte[]> getImage() {
-		return Phichitpittayakom.school.findTeacherImageById(this.imageIdentifier);
+		return Phichitpittayakom.school.findImageById(this.imageIdentifier);
 	}
 
 	public String getPersonIdentifier() {
