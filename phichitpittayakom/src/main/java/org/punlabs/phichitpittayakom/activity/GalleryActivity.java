@@ -27,7 +27,7 @@ public class GalleryActivity extends FragmentedActivity {
 		this.toolbarLayout.setExpandedSubtitle(this.getString(R.string.collapseTitle));
 		this.loading();
 		this.internet(() -> new Thread(() -> {
-			List<Gallery> galleryList = Phichitpittayakom.school.getAllGallery();
+			List<Gallery> galleryList = Phichitpittayakom.gallery.getAllGallery();
 			this.setFragment(new ListFragment<>(galleryList, (context, gallery) -> gallery.getTitle(), (context, gallery) -> gallery.getImageCount() + " / " + gallery.getViewCount(), (context, gallery) -> {}, (context, gallery) -> {
 				byte[] bitmapData = gallery.getThumbnail();
 				Bitmap bitmap = bitmapData == null ? null : BitmapFactory.decodeByteArray(bitmapData, 0, bitmapData.length);
