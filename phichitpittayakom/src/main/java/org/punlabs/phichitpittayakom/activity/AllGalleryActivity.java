@@ -1,9 +1,5 @@
 package org.punlabs.phichitpittayakom.activity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-
 import com.khopan.api.common.activity.FragmentedActivity;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
@@ -28,11 +24,7 @@ public class AllGalleryActivity extends FragmentedActivity {
 		this.loading();
 		this.internet(() -> new Thread(() -> {
 			List<Gallery> galleryList = Phichitpittayakom.gallery.getAllGallery();
-			this.setFragment(new ListFragment<>(galleryList, (context, gallery) -> gallery.getTitle(), (context, gallery) -> gallery.getImageCount() + " / " + gallery.getViewCount(), (context, gallery) -> {}, (context, gallery) -> {
-				byte[] bitmapData = gallery.getThumbnail();
-				Bitmap bitmap = bitmapData == null ? null : BitmapFactory.decodeByteArray(bitmapData, 0, bitmapData.length);
-				return new BitmapDrawable(this.getResources(), bitmap);
-			}));
+			this.setFragment(new ListFragment<>(galleryList, GalleryActivity :: title, GalleryActivity :: summary, GalleryActivity :: action, GalleryActivity :: image));
 		}).start());
 	}
 }

@@ -90,4 +90,10 @@
     <string name="majors">Majors</string>
     <string name="phone">Phone number</string>
     <string name="email">Email address</string>
+
+    <!-- AllGalleryActivity -->
+    <string name="oneImage">1 Image</string>
+    <string name="images">%d Images</string>
+    <string name="oneView">1 View</string>
+    <string name="views">%d Views</string>
 </resources>

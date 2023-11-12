@@ -90,4 +90,10 @@
     <string name="majors">วิชาเอก</string>
     <string name="phone">เบอร์โทรศัพท์</string>
     <string name="email">อีเมล์</string>
+
+    <!-- AllGalleryActivity -->
+    <string name="oneImage">1 รูป</string>
+    <string name="images">%d รูป</string>
+    <string name="oneView">การดู 1 ครั้ง</string>
+    <string name="views">การดู %d ครั้ง</string>
 </resources>
