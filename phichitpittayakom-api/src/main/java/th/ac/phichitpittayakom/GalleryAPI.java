@@ -133,20 +133,24 @@ public class GalleryAPI {
 		Elements textData = contentElements.select(".textData");
 		Elements elements = textData.select("td").get(1).select("div");
 		StringBuilder builder = new StringBuilder();
+		boolean added = false;
 
 		for(int i = 0; i < elements.size(); i++) {
 			Element element = elements.get(i);
+			String text = element.ownText();
 
-			if(i != 0) {
-				builder.append('\n');
+			if(!text.isEmpty()) {
+				if(added) {
+					builder.append('\n');
+				}
+
+				builder.append(text);
+				added = true;
 			}
-
-			builder.append(element.text());
 		}
 
 		String content = builder.toString();
 		Elements imageElements = textData.get(1).select("img");
-		System.out.println(imageElements);
 		List<byte[]> imageList = new ArrayList<>();
 
 		for(Element imageElement : imageElements) {
