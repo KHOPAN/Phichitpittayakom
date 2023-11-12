@@ -199,6 +199,18 @@ public class SchoolAPI {
 			}
 		}
 
+		int count = 0;
+
+		for(GalleryPage page : pageList) {
+			if(page == null) {
+				count++;
+			}
+		}
+
+		for(int i = 0; i < count; i++) {
+			pageList.remove(null);
+		}
+
 		pageList.sort(Comparator.comparingInt(x -> x.pageNumber));
 
 		for(GalleryPage page : pageList) {
@@ -215,7 +227,14 @@ public class SchoolAPI {
 		Elements elements = document.select("#gallery_web").select("td[align=center]");
 
 		for(Element element : elements) {
-			String thumbnail = element.select(".img").select("img").attr("src");
+			String thumbnailIdentifier = element.select(".img").select("img").attr("src");
+			Optional<byte[]> optional = this.findImageById(thumbnailIdentifier);
+			byte[] thumbnail = null;
+
+			if(optional.isPresent()) {
+				thumbnail = optional.get();
+			}
+
 			String title = element.select("strong").text();
 			String[] span = element.select("span").text().replaceAll("\\s+", "").split("/");
 			int imageCount = Integer.parseInt(span[0].substring(6, span[0].length() - 3));

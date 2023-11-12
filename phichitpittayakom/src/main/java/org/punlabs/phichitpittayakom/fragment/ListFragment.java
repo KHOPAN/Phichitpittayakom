@@ -28,13 +28,19 @@ public class ListFragment<T> extends ContextedFragment {
 	private final ListEntryGetter<T> titleGetter;
 	private final ListEntryGetter<T> summaryGetter;
 	private final ListEntrySupplier<T> onEntryClick;
+	private final ListImageGetter<T> imageGetter;
 
 	public ListFragment(List<T> list, ListEntryGetter<T> titleGetter, ListEntryGetter<T> summaryGetter, ListEntrySupplier<T> onEntryClick) {
+		this(list, titleGetter, summaryGetter, onEntryClick, null);
+	}
+
+	public ListFragment(List<T> list, ListEntryGetter<T> titleGetter, ListEntryGetter<T> summaryGetter, ListEntrySupplier<T> onEntryClick, ListImageGetter<T> imageGetter) {
 		this.list = list;
 		this.size = this.list.size();
 		this.titleGetter = titleGetter;
 		this.summaryGetter = summaryGetter;
 		this.onEntryClick = onEntryClick;
+		this.imageGetter = imageGetter;
 		List<T> removeList = new ArrayList<>();
 
 		for(T entry : this.list) {
@@ -105,6 +111,10 @@ public class ListFragment<T> extends ContextedFragment {
 			holder.view.setTitle(ListFragment.this.titleGetter.getString(this.context, entry));
 			holder.view.setSummary(ListFragment.this.summaryGetter.getString(this.context, entry));
 			holder.view.setOnClickListener(view -> ListFragment.this.onEntryClick.execute(this.context, entry));
+
+			if(ListFragment.this.imageGetter != null) {
+				holder.view.setImage(ListFragment.this.imageGetter.getImage(this.context, entry));
+			}
 		}
 
 		@Override

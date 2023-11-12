@@ -16,6 +16,7 @@
     <string name="allGuild">All guild</string>
     <string name="allTeacher">All teacher</string>
     <string name="managementAndPersonnel">Management and personnel</string>
+    <string name="gallery">Gallery</string>
 
     <!-- SearchStudentActivity -->
     <string name="searchStudentByStudentIdentifier">Search student by student identifier</string>

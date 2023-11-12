@@ -1,35 +1,27 @@
 package th.ac.phichitpittayakom.gallery;
 
-import java.util.Optional;
-
-import th.ac.phichitpittayakom.Phichitpittayakom;
-
 public class Gallery {
-	private final String thumbnail;
+	private final byte[] thumbnail;
 	private final String title;
 	private final int imageCount;
 	private final int viewCount;
 
 	public Gallery() {
-		this.thumbnail = "";
+		this.thumbnail = new byte[0];
 		this.title = "";
 		this.imageCount = 0;
 		this.viewCount = 0;
 	}
 
-	public Gallery(String thumbnail, String title, int imageCount, int viewCount) {
+	public Gallery(byte[] thumbnail, String title, int imageCount, int viewCount) {
 		this.thumbnail = thumbnail;
 		this.title = title;
 		this.imageCount = imageCount;
 		this.viewCount = viewCount;
 	}
 
-	public String getThumbnailIdentifier() {
+	public byte[] getThumbnail() {
 		return this.thumbnail;
-	}
-
-	public Optional<byte[]> getThumbnail() {
-		return Phichitpittayakom.school.findImageById(this.thumbnail);
 	}
 
 	public String getTitle() {

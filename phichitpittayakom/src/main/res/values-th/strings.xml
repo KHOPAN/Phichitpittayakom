@@ -16,6 +16,7 @@
     <string name="allGuild">ชุมนุมทั้งหมด</string>
     <string name="allTeacher">คุณครูทั้งหมด</string>
     <string name="managementAndPersonnel">ฝ่ายบริหารและบุคลากร</string>
+    <string name="gallery">ภาพกิจกรรม</string>
 
     <!-- SearchStudentActivity -->
     <string name="searchStudentByStudentIdentifier">ค้นหานักเรียนโดยเลขประจำตัวนักเรียน</string>
