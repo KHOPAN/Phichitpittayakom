@@ -7,4 +7,5 @@ public class Phichitpittayakom {
 	public static final GuildAPI guild = new GuildAPI();
 	public static final TeacherAPI teacher = new TeacherAPI();
 	public static final SchoolAPI school = new SchoolAPI();
+	public static final GalleryAPI gallery = new GalleryAPI();
 }

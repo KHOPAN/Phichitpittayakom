@@ -2,7 +2,6 @@ package th.ac.phichitpittayakom;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +12,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
-import th.ac.phichitpittayakom.gallery.Gallery;
 import th.ac.phichitpittayakom.name.Name;
 import th.ac.phichitpittayakom.name.NameParser;
 import th.ac.phichitpittayakom.person.Person;
@@ -148,106 +146,5 @@ public class SchoolAPI {
 		} catch(IndexOutOfBoundsException | NullPointerException ignored) {
 			return Optional.empty();
 		}
-	}
-
-	public List<Gallery> getAllGallery() {
-		List<Gallery> list = new ArrayList<>();
-		Document document;
-
-		try {
-			document = Jsoup.connect("http://phichitpittayakom.ac.th/gallery").get();
-		} catch(Throwable ignored) {
-			return list;
-		}
-
-		Elements elements = document.select("#gallery_web").select("tfoot").select("a");
-		int size = elements.size();
-
-		if(size < 2) {
-			return list;
-		}
-
-		List<GalleryPage> pageList = new ArrayList<>();
-		Element element = elements.get(size - 2);
-		int max = Integer.parseInt(element.text());
-		this.galleryPage(pageList, document);
-		List<Thread> threadList = new ArrayList<>();
-
-		for(int i = 2; i <= max; i++) {
-			int finalIndex = i;
-			Thread thread = new Thread(() -> {
-				Document gallery;
-
-				try {
-					gallery = Jsoup.connect("http://phichitpittayakom.ac.th/gallery_" + finalIndex).get();
-				} catch(Throwable ignored) {
-					return;
-				}
-
-				this.galleryPage(pageList, gallery);
-			});
-
-			threadList.add(thread);
-			thread.start();
-		}
-
-		for(Thread thread : threadList) {
-			try {
-				thread.join();
-			} catch(Throwable ignored) {
-
-			}
-		}
-
-		int count = 0;
-
-		for(GalleryPage page : pageList) {
-			if(page == null) {
-				count++;
-			}
-		}
-
-		for(int i = 0; i < count; i++) {
-			pageList.remove(null);
-		}
-
-		pageList.sort(Comparator.comparingInt(x -> x.pageNumber));
-
-		for(GalleryPage page : pageList) {
-			list.addAll(page.galleryList);
-		}
-
-		return list;
-	}
-
-	private void galleryPage(List<GalleryPage> list, Document document) {
-		GalleryPage page = new GalleryPage();
-		page.pageNumber = Integer.parseInt(document.select(".number.current").text());
-		List<Gallery> galleryList = new ArrayList<>();
-		Elements elements = document.select("#gallery_web").select("td[align=center]");
-
-		for(Element element : elements) {
-			String thumbnailIdentifier = element.select(".img").select("img").attr("src");
-			Optional<byte[]> optional = this.findImageById(thumbnailIdentifier);
-			byte[] thumbnail = null;
-
-			if(optional.isPresent()) {
-				thumbnail = optional.get();
-			}
-
-			String title = element.select("strong").text();
-			String[] span = element.select("span").text().replaceAll("\\s+", "").split("/");
-			int imageCount = Integer.parseInt(span[0].substring(6, span[0].length() - 3));
-			int viewCount = Integer.parseInt(span[1].substring(2, span[1].length() - 6));
-			galleryList.add(new Gallery(thumbnail, title, imageCount, viewCount));
-		}
-
-		page.galleryList = galleryList;
-		list.add(page);
-	}
-
-	private class GalleryPage {
-		private int pageNumber;
-		private List<Gallery> galleryList;
 	}
 }
