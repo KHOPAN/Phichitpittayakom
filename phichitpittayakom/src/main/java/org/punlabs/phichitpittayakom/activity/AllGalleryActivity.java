@@ -1,6 +1,5 @@
 package org.punlabs.phichitpittayakom.activity;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,7 +29,6 @@ import java.util.List;
 import java.util.Optional;
 
 import dev.oneuiproject.oneui.layout.ToolbarLayout;
-import dev.oneuiproject.oneui.widget.RoundLinearLayout;
 import th.ac.phichitpittayakom.Phichitpittayakom;
 import th.ac.phichitpittayakom.gallery.Gallery;
 import th.ac.phichitpittayakom.gallery.GalleryPage;
@@ -60,13 +58,7 @@ public class AllGalleryActivity extends AppCompatActivity {
 		toolbarLayout.setExpandedSubtitle(this.getString(R.string.collapseTitle));
 		toolbarLayout.setExpanded(false, false);
 		toolbarLayout.setNavigationButtonAsBack();
-		/*RoundLinearLayout linearLayout = new RoundLinearLayout(this);
-		linearLayout.setLayoutParams(new ToolbarLayout.ToolbarLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-		linearLayout.setOrientation(RoundLinearLayout.VERTICAL);
-		linearLayout.setBackgroundColor(this.getColor(R.color.oui_background_color));
-		toolbarLayout.addView(linearLayout);*/
 		RecyclerView recyclerView = new RecyclerView(this);
-		//recyclerView.setLayoutParams(new RoundLinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 		recyclerView.setLayoutParams(new ToolbarLayout.ToolbarLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 		this.layoutManager = new LinearLayoutManager(this);
 		recyclerView.setLayoutManager(this.layoutManager);
@@ -79,7 +71,6 @@ public class AllGalleryActivity extends AppCompatActivity {
 		recyclerView.addOnScrollListener(new Listener());
 		recyclerView.setBackgroundColor(this.getColor(R.color.oui_background_color));
 		recyclerView.setItemAnimator(new DefaultItemAnimator());
-		//linearLayout.addView(recyclerView);
 		toolbarLayout.addView(recyclerView);
 		this.loading();
 	}
@@ -201,7 +192,7 @@ public class AllGalleryActivity extends AppCompatActivity {
 		}
 	}
 
-	private static class Holder extends RecyclerView.ViewHolder {
+	private class Holder extends RecyclerView.ViewHolder {
 		private final CardView cardView;
 
 		private Holder(@NonNull CardView cardView) {
@@ -210,8 +201,10 @@ public class AllGalleryActivity extends AppCompatActivity {
 		}
 
 		private void apply(Gallery gallery, int index) {
-			this.cardView.setTitle(gallery.getTitle());
 			this.cardView.setDividerVisible(index != 0);
+			this.cardView.setTitle(GalleryActivity.title(AllGalleryActivity.this, gallery));
+			this.cardView.setSummary(GalleryActivity.summary(AllGalleryActivity.this, gallery));
+			this.cardView.setOnClickListener(view -> GalleryActivity.action(AllGalleryActivity.this, gallery));
 		}
 	}
 
