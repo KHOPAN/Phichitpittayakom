@@ -5,23 +5,34 @@ import java.util.Optional;
 import th.ac.phichitpittayakom.Phichitpittayakom;
 
 public class Gallery {
+	private final String galleryIdentifier;
 	private final String title;
 	private final String thumbnailIdentifier;
 	private final int imageCount;
 	private final int viewCount;
 
 	public Gallery() {
+		this.galleryIdentifier = "";
 		this.title = "";
 		this.thumbnailIdentifier = "";
 		this.imageCount = 0;
 		this.viewCount = 0;
 	}
 
-	public Gallery(String title, String thumbnailIdentifier, int imageCount, int viewCount) {
+	public Gallery(String galleryIdentifier, String title, String thumbnailIdentifier, int imageCount, int viewCount) {
+		this.galleryIdentifier = galleryIdentifier;
 		this.title = title;
 		this.thumbnailIdentifier = thumbnailIdentifier;
 		this.imageCount = imageCount;
 		this.viewCount = viewCount;
+	}
+
+	public String getGalleryIdentifier() {
+		return this.galleryIdentifier;
+	}
+
+	public Optional<GalleryDetail> getDetail() {
+		return Phichitpittayakom.gallery.findGalleryDetailByIdentifier(this.galleryIdentifier);
 	}
 
 	public String getTitle() {

@@ -5,23 +5,23 @@ import java.time.LocalDateTime;
 public class GalleryDetail {
 	private final String title;
 	private final String content;
-	private final byte[][] images;
-	private final LocalDateTime postDate;
+	private final String[] images;
+	private final LocalDateTime postTime;
 	private final int viewCount;
 
 	public GalleryDetail() {
 		this.title = "";
 		this.content = "";
-		this.images = new byte[0][];
-		this.postDate = null;
+		this.images = new String[0];
+		this.postTime = LocalDateTime.of(0, 1, 1, 0, 0, 0, 0);
 		this.viewCount = 0;
 	}
 
-	public GalleryDetail(String title, String content, byte[][] images, LocalDateTime postDate, int viewCount) {
+	public GalleryDetail(String title, String content, String[] images, LocalDateTime postTime, int viewCount) {
 		this.title = title;
 		this.content = content;
 		this.images = images;
-		this.postDate = postDate;
+		this.postTime = postTime;
 		this.viewCount = viewCount;
 	}
 
@@ -33,12 +33,12 @@ public class GalleryDetail {
 		return this.content;
 	}
 
-	public byte[][] getImages() {
+	public String[] getImages() {
 		return this.images;
 	}
 
-	public LocalDateTime getPostDate() {
-		return this.postDate;
+	public LocalDateTime getPostTime() {
+		return this.postTime;
 	}
 
 	public int getViewCount() {
