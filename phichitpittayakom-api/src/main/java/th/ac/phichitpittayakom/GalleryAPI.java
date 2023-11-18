@@ -94,7 +94,41 @@ public class GalleryAPI {
 				imageIdentifier = imgTag.get(0).attr("src");
 			}
 
-			galleryList.add(new Gallery(title, imageIdentifier));
+			String[] description = element.select(".txtDate").text().replaceAll("\\s+", "").split("/");
+			int imageCount = 0;
+			int viewCount = 0;
+
+			descriptionCheck: {
+				if(description.length < 1) {
+					break descriptionCheck;
+				}
+
+				String imageCountString = description[0].replaceAll("[^0-9]", "");
+
+				if(!imageCountString.isEmpty()) {
+					try {
+						imageCount = Integer.parseInt(imageCountString);
+					} catch(Throwable ignored) {
+
+					}
+				}
+
+				if(description.length < 2) {
+					break descriptionCheck;
+				}
+
+				String viewCountString = description[1].replaceAll("[^0-9]", "");
+
+				if(!viewCountString.isEmpty()) {
+					try {
+						viewCount = Integer.parseInt(viewCountString);
+					} catch(Throwable ignored) {
+
+					}
+				}
+			}
+
+			galleryList.add(new Gallery(title, imageIdentifier, imageCount, viewCount));
 		}
 
 		return Optional.of(new GalleryPage(pageNumber, hasNext, galleryList.toArray(new Gallery[0])));
