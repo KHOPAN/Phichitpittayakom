@@ -46,6 +46,6 @@
         <activity android:name="org.punlabs.phichitpittayakom.activity.MAPSectionActivity" />
         <activity android:name="org.punlabs.phichitpittayakom.activity.PersonActivity" />
         <activity android:name="org.punlabs.phichitpittayakom.activity.AllGalleryActivity" />
-        <activity android:name="org.punlabs.phichitpittayakom.activity.GalleryActivity" />
+        <activity android:name="org.punlabs.phichitpittayakom.activity.gallery.GalleryActivity" />
     </application>
 </manifest>

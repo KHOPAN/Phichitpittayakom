@@ -24,6 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.khopan.api.common.card.CardView;
 import com.sec.sesl.org.punlabs.phichitpittayakom.R;
 
+import org.punlabs.phichitpittayakom.activity.gallery.GalleryActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -91,16 +93,18 @@ public class AllGalleryActivity extends AppCompatActivity {
 		GalleryPage page = optional.get();
 		Gallery[] galleryList = page.getGalleryList();
 		this.runOnUiThread(() -> {
-			this.hasNext = page.hasNextPage();
-			int index = this.galleryList.size();
+			synchronized(this.galleryList) {
+				this.hasNext = page.hasNextPage();
+				int index = this.galleryList.size();
 
-			for(Gallery gallery : galleryList) {
-				this.galleryList.add(new GalleryEntry(gallery, this.galleryList.size()));
+				for(Gallery gallery : galleryList) {
+					this.galleryList.add(new GalleryEntry(gallery, this.galleryList.size()));
+				}
+
+				this.adapter.notifyItemRangeInserted(index, galleryList.length);
+				this.pageNumber++;
+				this.unloading();
 			}
-
-			this.adapter.notifyItemRangeInserted(index, galleryList.length);
-			this.pageNumber++;
-			this.unloading();
 		});
 	}
 
@@ -176,14 +180,12 @@ public class AllGalleryActivity extends AppCompatActivity {
 			}
 
 			Holder holder = (Holder) viewHolder;
-			GalleryEntry entry = AllGalleryActivity.this.galleryList.get(position);
-			holder.apply(entry.gallery, position);
 
-			if(entry.thumbnail == null) {
-				return;
+			synchronized(AllGalleryActivity.this.galleryList) {
+				GalleryEntry entry = AllGalleryActivity.this.galleryList.get(position);
+				holder.apply(entry.gallery, position);
+				holder.cardView.setImage(entry.thumbnail);
 			}
-
-			holder.cardView.setImage(entry.thumbnail);
 		}
 
 		@Override
