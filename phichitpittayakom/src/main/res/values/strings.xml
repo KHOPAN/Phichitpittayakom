@@ -41,8 +41,10 @@
     <string name="classRoomNumber">Room</string>
     <string name="number">Number</string>
     <string name="guild">Guild</string>
-    <string name="guildMaster">Guild master</string>
-    <string name="guildMasters">Guild masters</string>
+    <plurals name="guildMasters">
+        <item quantity="one">Guild master</item>
+        <item quantity="other">Guild masters</item>
+    </plurals>
 
     <!-- GuildFragment -->
     <string name="guildIdentifier">Identifier</string>
@@ -50,31 +52,45 @@
     <string name="guildLocation">Location</string>
     <string name="guildClass">Class</string>
     <string name="subjectArea">Subject area</string>
-    <string name="goal">Goal</string>
-    <string name="goals">Goals</string>
+    <plurals name="goals">
+        <item quantity="one">Goal</item>
+        <item quantity="other">Goals</item>
+    </plurals>
     <string name="memberCountPercentage">Member count percentage</string>
-    <string name="minimumMember">Minimum member</string>
-    <string name="minimumMembers">Minimum members</string>
-    <string name="maximumMember">Maximum member</string>
-    <string name="maximumMembers">Maximum members</string>
+    <plurals name="minimumMembers">
+        <item quantity="one">Minimum member</item>
+        <item quantity="other">Minimum members</item>
+    </plurals>
+    <plurals name="maximumMembers">
+        <item quantity="one">Maximum member</item>
+        <item quantity="other">Maximum members</item>
+    </plurals>
     <string name="memberCount">Member count</string>
     <string name="remainingCount">Remaining count</string>
-    <string name="member">Member</string>
-    <string name="members">Members</string>
+    <plurals name="members">
+        <item quantity="one">Member</item>
+        <item quantity="other">Members</item>
+    </plurals>
 
     <!-- TeacherActivity -->
-    <string name="ageOneYear">1 year</string>
-    <string name="ageYears">%d years</string>
+    <plurals name="ageYears">
+        <item quantity="one">1 year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
 
     <!-- TeacherFragment -->
     <string name="rawBirthday">Raw birthday</string>
     <string name="birthday">Birthday</string>
     <string name="deathDate">Estimated date of death</string>
     <string name="retireDate">Date of retirement</string>
-    <string name="ageOneMonth">1 month</string>
-    <string name="ageMonths">%d months</string>
-    <string name="ageOneDay">1 day</string>
-    <string name="ageDays">%d days</string>
+    <plurals name="ageMonths">
+        <item quantity="one">1 month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
+    <plurals name="ageDays">
+        <item quantity="one">1 day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
     <string name="age">Age</string>
     <string name="remainingLifetime">Remaining lifetime</string>
     <string name="remainingWorkTime">Remaining time until retirement</string>
@@ -91,8 +107,12 @@
     <string name="email">Email address</string>
 
     <!-- AllGalleryActivity -->
-    <string name="oneImage">1 image</string>
-    <string name="images">%d images</string>
-    <string name="oneView">1 view</string>
-    <string name="views">%d views</string>
+    <plurals name="images">
+        <item quantity="one">1 image</item>
+        <item quantity="other">%d images</item>
+    </plurals>
+    <plurals name="views">
+        <item quantity="one">1 view</item>
+        <item quantity="other">%d views</item>
+    </plurals>
 </resources>

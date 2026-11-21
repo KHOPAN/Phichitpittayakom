@@ -74,7 +74,7 @@ public class TeacherActivity extends FragmentedActivity {
 			Period period = Period.between(date, LocalDate.now());
 			int age = period.getYears();
 			builder.append(" ⋅ ");
-			builder.append(age == 1 ? context.getString(R.string.ageOneYear) : context.getString(R.string.ageYears, age));
+			builder.append(context.getResources().getQuantityString(R.plurals.ageYears, age, age));
 		}
 
 		return builder.toString();

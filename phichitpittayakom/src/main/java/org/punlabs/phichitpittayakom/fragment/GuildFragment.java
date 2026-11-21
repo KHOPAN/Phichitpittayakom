@@ -49,7 +49,7 @@ public class GuildFragment extends ContextedFragment {
 		String[] goals = this.guild.getGoals();
 
 		if(goals.length != 0) {
-			builder.separate(this.getString(goals.length == 1 ? R.string.goal : R.string.goals));
+			builder.separate(this.resources.getQuantityString(R.plurals.goals, goals.length));
 
 			for(int i = 0; i < goals.length; i++) {
 				builder.card().title((i + 1) + ". " + goals[i]);
@@ -63,14 +63,14 @@ public class GuildFragment extends ContextedFragment {
 		builder.card().title(String.format(Locale.getDefault(), "%.2f%%", (((double) memberCount) / ((double) maximumMembers)) * 100.0d)).summary(this.getString(R.string.memberCountPercentage));
 		builder.separate();
 		int minimumMembers = this.guild.getMinimumMembers();
-		builder.card().title(Integer.toString(minimumMembers)).summary(this.getString(minimumMembers == 1 ? R.string.minimumMember : R.string.minimumMembers));
-		builder.card().title(Integer.toString(maximumMembers)).summary(this.getString(maximumMembers == 1 ? R.string.maximumMember : R.string.maximumMembers));
+		builder.card().title(Integer.toString(minimumMembers)).summary(this.resources.getQuantityString(R.plurals.minimumMembers, minimumMembers));
+		builder.card().title(Integer.toString(maximumMembers)).summary(this.resources.getQuantityString(R.plurals.maximumMembers, maximumMembers));
 		builder.card().title(Integer.toString(memberCount)).summary(this.getString(R.string.memberCount));
 		builder.card().title(Integer.toString(this.guild.getRemainingCount())).summary(this.getString(R.string.remainingCount));
 		Teacher[] teachers = this.guild.getTeachers();
 
 		if(teachers.length != 0) {
-			builder.separate(this.getString(teachers.length == 1 ? R.string.guildMaster : R.string.guildMasters));
+			builder.separate(this.resources.getQuantityString(R.plurals.guildMasters, teachers.length));
 
 			for(Teacher teacher : teachers) {
 				builder.card().title(TeacherActivity.title(this.context, teacher)).summary(TeacherActivity.summary(this.context, teacher)).action(cardView -> TeacherActivity.action(this.context, teacher));
@@ -80,7 +80,7 @@ public class GuildFragment extends ContextedFragment {
 		Student[] students = this.guild.getMembers();
 
 		if(students.length != 0) {
-			builder.separate(this.getString(students.length == 1 ? R.string.member : R.string.members));
+			builder.separate(this.resources.getQuantityString(R.plurals.members, students.length));
 
 			for(Student student : students) {
 				builder.card().title(StudentActivity.title(this.context, student)).summary(StudentActivity.summary(this.context, student)).action(cardView -> StudentActivity.action(this.context, student));

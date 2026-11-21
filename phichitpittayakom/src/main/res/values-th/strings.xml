@@ -40,8 +40,9 @@
     <string name="classRoomNumber">ห้อง</string>
     <string name="number">เลขที่</string>
     <string name="guild">ชุมนุม</string>
-    <string name="guildMaster">คุณครูที่ปรึกษาประจำชุมนุม</string>
-    <string name="guildMasters">คุณครูที่ปรึกษาประจำชุมนุม</string>
+    <plurals name="guildMasters">
+        <item quantity="other">คุณครูที่ปรึกษาประจำชุมนุม</item>
+    </plurals>
 
     <!-- GuildFragment -->
     <string name="guildIdentifier">รหัสชุมนุม</string>
@@ -49,31 +50,38 @@
     <string name="guildLocation">สถานที่เรียน</string>
     <string name="guildClass">ระดับชั้น</string>
     <string name="subjectArea">กลุ่มสาระการเรียนรู้</string>
-    <string name="goal">จุดประสงค์</string>
-    <string name="goals">จุดประสงค์</string>
+    <plurals name="goals">
+        <item quantity="other">จุดประสงค์</item>
+    </plurals>
     <string name="memberCountPercentage">เปอร์เซ็นต์ของจำนวนสมาชิก</string>
-    <string name="minimumMember">สมาชิกที่น้อยที่สุดที่รับได้</string>
-    <string name="minimumMembers">สมาชิกที่น้อยที่สุดที่รับได้</string>
-    <string name="maximumMember">สมาชิกที่มากที่สุดที่รับได้</string>
-    <string name="maximumMembers">สมาชิกที่มากที่สุดที่รับได้</string>
+    <plurals name="minimumMembers">
+        <item quantity="other">สมาชิกที่น้อยที่สุดที่รับได้</item>
+    </plurals>
+    <plurals name="maximumMembers">
+        <item quantity="other">สมาชิกที่มากที่สุดที่รับได้</item>
+    </plurals>
     <string name="memberCount">จำนวนสมาชิก</string>
     <string name="remainingCount">จำนวนที่ว่าง</string>
-    <string name="member">สมาชิก</string>
-    <string name="members">สมาชิก</string>
+    <plurals name="members">
+        <item quantity="other">สมาชิก</item>
+    </plurals>
 
     <!-- TeacherActivity -->
-    <string name="ageOneYear">1 ปี</string>
-    <string name="ageYears">%d ปี</string>
+    <plurals name="ageYears">
+        <item quantity="other">%d ปี</item>
+    </plurals>
 
     <!-- TeacherFragment -->
     <string name="rawBirthday">วันเกิดดิบ</string>
     <string name="birthday">วันเกิด</string>
     <string name="deathDate">วันเสียชีวิตโดยประมาณ</string>
     <string name="retireDate">วันเกษียณอายุราชการ</string>
-    <string name="ageOneMonth">1 เดือน</string>
-    <string name="ageMonths">%d เดือน</string>
-    <string name="ageOneDay">1 วัน</string>
-    <string name="ageDays">%d วัน</string>
+    <plurals name="ageMonths">
+        <item quantity="other">%d เดือน</item>
+    </plurals>
+    <plurals name="ageDays">
+        <item quantity="other">%d วัน</item>
+    </plurals>
     <string name="age">อายุ</string>
     <string name="remainingLifetime">เวลาชีวิตที่เหลือ</string>
     <string name="remainingWorkTime">เวลาที่เหลือก่อนเกษียณอายุราชการ</string>
@@ -90,8 +98,10 @@
     <string name="email">อีเมล</string>
 
     <!-- AllGalleryActivity -->
-    <string name="oneImage">1 รูป</string>
-    <string name="images">%d รูป</string>
-    <string name="oneView">การดู 1 ครั้ง</string>
-    <string name="views">การดู %d ครั้ง</string>
+    <plurals name="images">
+        <item quantity="other">%d รูป</item>
+    </plurals>
+    <plurals name="views">
+        <item quantity="other">การดู %d ครั้ง</item>
+    </plurals>
 </resources>

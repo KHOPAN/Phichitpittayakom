@@ -2,6 +2,7 @@ package org.punlabs.phichitpittayakom.activity.gallery;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -193,9 +194,10 @@ public class GalleryActivity extends AppCompatActivity {
 		StringBuilder builder = new StringBuilder();
 		int imageCount = gallery.getImageCount();
 		int viewCount = gallery.getViewCount();
-		builder.append(imageCount == 1 ? context.getString(R.string.oneImage) : context.getString(R.string.images, imageCount));
+		final Resources resources = context.getResources();
+		builder.append(resources.getQuantityString(R.plurals.images, imageCount, imageCount));
 		builder.append(' ');
-		builder.append(viewCount == 1 ? context.getString(R.string.oneView) : context.getString(R.string.views, viewCount));
+		builder.append(resources.getQuantityString(R.plurals.views, viewCount, viewCount));
 		return builder.toString();
 	}
 

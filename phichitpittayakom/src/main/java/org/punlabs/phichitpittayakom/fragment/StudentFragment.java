@@ -48,7 +48,7 @@ public class StudentFragment extends ContextedFragment {
 		CardBuilder builder = new CardBuilder(linearLayout, this.context);
 
 		if(this.showResult) {
-			builder.separate(this.resources.getQuantityString(R.plurals.foundSearchResults, 1));
+			builder.separate(this.resources.getQuantityString(R.plurals.foundSearchResults, 1, 1));
 		}
 
 		StudentFragment.buildName(builder, this.context, this.student.getName());
@@ -64,7 +64,7 @@ public class StudentFragment extends ContextedFragment {
 		Teacher[] teachers = this.guild.getTeachers();
 
 		if(teachers.length != 0) {
-			builder.separate(this.getString(teachers.length == 1 ? R.string.guildMaster : R.string.guildMasters));
+			builder.separate(this.resources.getQuantityString(R.plurals.guildMasters, teachers.length));
 
 			for(Teacher teacher : teachers) {
 				builder.card().title(TeacherActivity.title(this.context, teacher)).summary(TeacherActivity.summary(this.context, teacher)).action(cardView -> TeacherActivity.action(this.context, teacher));

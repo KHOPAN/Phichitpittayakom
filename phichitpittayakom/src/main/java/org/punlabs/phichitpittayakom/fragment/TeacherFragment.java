@@ -205,17 +205,17 @@ public class TeacherFragment extends ContextedFragment {
 		StringBuilder builder = new StringBuilder();
 
 		if(years > 0) {
-			builder.append(years == 1 ? this.getString(R.string.ageOneYear) : this.getString(R.string.ageYears, years));
+			builder.append(this.resources.getQuantityString(R.plurals.ageYears, years, years));
 			builder.append(' ');
 		}
 
 		if(months > 0) {
-			builder.append(months == 1 ? this.getString(R.string.ageOneMonth) : this.getString(R.string.ageMonths, months));
+			builder.append(this.resources.getQuantityString(R.plurals.ageMonths, months, months));
 			builder.append(' ');
 		}
 
 		if(days > 0) {
-			builder.append(days == 1 ? this.getString(R.string.ageOneDay) : this.getString(R.string.ageDays, days));
+			builder.append(this.resources.getQuantityString(R.plurals.ageDays, days, days));
 			builder.append(' ');
 		}
 
