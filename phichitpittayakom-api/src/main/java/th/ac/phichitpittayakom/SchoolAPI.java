@@ -84,7 +84,7 @@ public class SchoolAPI {
 			}
 
 			Element anchor = div.select("a").get(0);
-			Person leaderPerson = new Person(leaderName, leaderPosition, anchor.select("img").get(0).attr("src"), anchor.attr("href"));
+			Person leaderPerson = new Person(leaderName, leaderPosition, "http://phichitpittayakom.ac.th/" + anchor.select("img").get(0).attr("src"), anchor.attr("href"));
 
 			for(int i = 1; i < data.size(); i++) {
 				Element element = data.get(i);
@@ -94,7 +94,7 @@ public class SchoolAPI {
 				Name name = NameParser.parse(nodeList.get(0).text());
 				String position = element.select("font").text().trim();
 				String personIdentifier = element.select("a").attr("href");
-				String imageIdentifier = element.select("img").attr("src");
+				String imageIdentifier = "http://phichitpittayakom.ac.th/" + element.select("img").attr("src");
 				personList.add(new Person(name, position, imageIdentifier, personIdentifier));
 			}
 
@@ -141,7 +141,7 @@ public class SchoolAPI {
 			String majors = content.get(3).select("td").get(1).text();
 			String phone = content.get(4).select("td").get(1).text();
 			String email = content.get(5).select("td").get(1).text();
-			String imageIdentifier = tables.get(2).select("img").attr("src");
+			String imageIdentifier = "http://phichitpittayakom.ac.th/" + tables.get(2).select("img").attr("src");
 			return Optional.of(new PersonInfo(name, position, imageIdentifier, personIdentifier, subjectArea, education, majors, phone, email));
 		} catch(IndexOutOfBoundsException | NullPointerException ignored) {
 			return Optional.empty();

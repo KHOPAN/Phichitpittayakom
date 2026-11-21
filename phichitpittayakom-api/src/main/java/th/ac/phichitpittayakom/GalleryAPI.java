@@ -137,6 +137,10 @@ public class GalleryAPI {
 				}
 			}
 
+			if(!imageIdentifier.startsWith("http")) {
+				imageIdentifier = "http://phichitpittayakom.ac.th/" + imageIdentifier;
+			}
+
 			galleryList.add(new Gallery(galleryIdentifier, title, imageIdentifier, imageCount, viewCount));
 		}
 
