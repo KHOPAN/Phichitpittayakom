@@ -20,7 +20,7 @@ public class AllTeacherActivity extends FragmentedActivity {
 		this.toolbarLayout.setNavigationButtonAsBack();
 		String title = this.getString(R.string.allTeacher);
 		this.toolbarLayout.setTitle(title, title);
-		this.toolbarLayout.setExpandedSubtitle(this.getString(R.string.collapseTitle));
+		this.toolbarLayout.setExpandedSubtitle(this.getString(R.string.title));
 		this.loading();
 		this.internet(() -> new Thread(() -> {
 			List<Teacher> teacherList = Phichitpittayakom.teacher.getAllTeacher();

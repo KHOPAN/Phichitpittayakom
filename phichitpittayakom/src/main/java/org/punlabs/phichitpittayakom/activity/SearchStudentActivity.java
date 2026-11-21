@@ -70,7 +70,7 @@ public class SearchStudentActivity extends AppCompatActivity implements IFragmen
 		}
 
 		String title = this.getString(resource);
-		FrameLayout frameLayout = ActivityUtils.initializeForFragment(this, title, title, this.getString(R.string.collapseTitle), true);
+		FrameLayout frameLayout = ActivityUtils.initializeForFragment(this, title, title, this.getString(R.string.title), true);
 		LinearLayout linearLayout = new LinearLayout(this);
 		linearLayout.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 		linearLayout.setOrientation(LinearLayout.VERTICAL);

@@ -57,7 +57,7 @@ public class AllGalleryActivity extends AppCompatActivity {
 		this.setContentView(toolbarLayout);
 		String title = this.getString(R.string.gallery);
 		toolbarLayout.setTitle(title, title);
-		toolbarLayout.setExpandedSubtitle(this.getString(R.string.collapseTitle));
+		toolbarLayout.setExpandedSubtitle(this.getString(R.string.title));
 		toolbarLayout.setExpanded(false, false);
 		toolbarLayout.setNavigationButtonAsBack();
 		RecyclerView recyclerView = new RecyclerView(this);

@@ -20,7 +20,7 @@ public class AllGuildActivity extends FragmentedActivity {
 		this.toolbarLayout.setNavigationButtonAsBack();
 		String title = this.getString(R.string.allGuild);
 		this.toolbarLayout.setTitle(title, title);
-		this.toolbarLayout.setExpandedSubtitle(this.getString(R.string.collapseTitle));
+		this.toolbarLayout.setExpandedSubtitle(this.getString(R.string.title));
 		this.loading();
 		this.internet(() -> new Thread(() -> {
 			List<Guild> guildList = Phichitpittayakom.guild.getAllGuild();
