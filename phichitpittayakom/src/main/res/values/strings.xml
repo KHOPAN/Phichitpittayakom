@@ -5,8 +5,8 @@
     <string name="applicationName">Phichitpittayakom</string>
 
     <!-- PhichitpittayakomApplication -->
-    <string name="title">Phichitpittayakom</string>
-    <string name="subtitle">School</string>
+    <string name="title">Phichitpittayakom School</string>
+    <string name="subtitle">Phichit Province</string>
     <string name="collapseTitle">Phichitpittayakom School</string>
     <string name="searchStudentBy">Search student by</string>
     <string name="studentIdentifier">Student identifier</string>
