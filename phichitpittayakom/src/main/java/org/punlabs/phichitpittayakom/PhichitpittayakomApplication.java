@@ -22,7 +22,8 @@ public class PhichitpittayakomApplication extends AppCompatActivity {
 	@Override
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-		LinearLayout linearLayout = ActivityUtils.initializeView(this, this.getString(R.string.title), this.getString(R.string.collapseTitle), this.getString(R.string.subtitle), false);
+		final String title = this.getString(R.string.title);
+		LinearLayout linearLayout = ActivityUtils.initializeView(this, title, title, this.getString(R.string.subtitle), false);
 		CardBuilder builder = new CardBuilder(linearLayout, this);
 		builder.separate(this.getString(R.string.searchStudentBy));
 		this.searchActivity(builder, R.string.studentIdentifier, 0);
