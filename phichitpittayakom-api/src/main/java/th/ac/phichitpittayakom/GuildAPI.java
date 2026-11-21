@@ -125,17 +125,17 @@ public class GuildAPI {
 
 		try {
 			Elements elements = document.select("tbody").get(3).select("tr");
-			String name = elements.get(1).select("td").get(1).ownText();
+			String name = elements.get(2).select("td").get(1).ownText();
 
 			if(name.isEmpty()) {
 				return Optional.empty();
 			}
 
-			String location = elements.get(2).select("td").get(1).ownText();
-			GuildType type = GuildTypeParser.parse(elements.get(3).select("td").get(1).ownText());
-			GuildClass guildClass = GuildClassParser.parse(elements.get(4).select("td").get(1).ownText());
-			String subjectArea = elements.get(5).select("td").get(1).ownText();
-			Element teacherElement = elements.get(6);
+			String location = elements.get(3).select("td").get(1).ownText();
+			GuildType type = GuildTypeParser.parse(elements.get(4).select("td").get(1).ownText());
+			GuildClass guildClass = GuildClassParser.parse(elements.get(5).select("td").get(1).ownText());
+			String subjectArea = elements.get(6).select("td").get(1).ownText();
+			Element teacherElement = elements.get(7);
 			Name[] teacherNames = NameListParser.parse(teacherElement.select("td").get(1).ownText());
 			Teacher[] teachers = new Teacher[teacherNames.length];
 			Elements imageElements = teacherElement.select("img");
@@ -167,16 +167,16 @@ public class GuildAPI {
 				teachers[i] = new Teacher(teacherNames[i], identifier, guildIdentifier, imageIdentifier, birthday);
 			}
 
-			String[] goals = GoalParser.parse(elements.get(7).select("td").get(1).ownText());
-			String minimumText = elements.get(8).select("td").get(1).text();
+			String[] goals = GoalParser.parse(elements.get(8).select("td").get(1).ownText());
+			String minimumText = elements.get(9).select("td").get(1).text();
 			int minimumMembers = Integer.parseInt(minimumText.substring(0, minimumText.length() - 2).trim());
-			String maximumText = elements.get(9).select("td").get(1).text();
+			String maximumText = elements.get(10).select("td").get(1).text();
 			int maximumMembers = Integer.parseInt(maximumText.substring(0, maximumText.length() - 2).trim());
-			String memberCountText = elements.get(10).select("td").get(1).text();
+			String memberCountText = elements.get(11).select("td").get(1).text();
 			int memberCount = Integer.parseInt(memberCountText.substring(0, memberCountText.length() - 2).trim());
-			String remainingText = elements.get(11).select("td").get(1).text();
+			String remainingText = elements.get(12).select("td").get(1).text();
 			int remaining = Integer.parseInt(remainingText.substring(0, remainingText.length() - 2).trim());
-			String note = elements.get(12).select("td").get(1).ownText();
+			String note = elements.get(13).select("td").get(1).ownText();
 
 			if("-".equals(note)) {
 				note = "";
