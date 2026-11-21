@@ -20,7 +20,7 @@
     <!-- SearchStudentActivity -->
     <string name="searchStudentByStudentIdentifier">ค้นหานักเรียนโดยเลขประจำตัวนักเรียน</string>
     <string name="searchStudentByNationalIdentifier">ค้นหานักเรียนโดยเลขบัตรประจำตัวประชาชน</string>
-    <string name="searchStudentByNameParts">ค้นหานักเรียนด้วยชื่อหรือนามสกุล</string>
+    <string name="searchStudentByNameParts">ค้นหานักเรียนโดยชื่อหรือนามสกุล</string>
     <string name="search">ค้นหา</string>
     <string name="emptySearchField">ช่องค้นหาว่างเปล่า</string>
     <string name="invalidStudentIdentifier">เลขประจำตัวนักเรียนไม่ถูกต้อง</string>
@@ -52,24 +52,24 @@
     <string name="subjectArea">กลุ่มสาระการเรียนรู้</string>
     <string name="goal">จุดประสงค์</string>
     <string name="goals">จุดประสงค์</string>
-    <string name="memberCountPercentage">Member count percentage</string>
-    <string name="minimumMember">สมาชิกที่น้อยที่สุดที่รับ</string>
-    <string name="minimumMembers">สมาชิกที่น้อยที่สุดที่รับ</string>
+    <string name="memberCountPercentage">เปอร์เซ็นต์ของจำนวนสมาชิก</string>
+    <string name="minimumMember">สมาชิกที่น้อยที่สุดที่รับได้</string>
+    <string name="minimumMembers">สมาชิกที่น้อยที่สุดที่รับได้</string>
     <string name="maximumMember">สมาชิกที่มากที่สุดที่รับได้</string>
     <string name="maximumMembers">สมาชิกที่มากที่สุดที่รับได้</string>
     <string name="memberCount">จำนวนสมาชิก</string>
-    <string name="remainingCount">สมาชิกที่เหลือ</string>
-    <string name="member">นักเรียนในชุมนุม</string>
-    <string name="members">นักเรียนในชุมนุม</string>
+    <string name="remainingCount">จำนวนที่ว่าง</string>
+    <string name="member">สมาชิก</string>
+    <string name="members">สมาชิก</string>
 
     <!-- TeacherActivity -->
     <string name="ageOneYear">1 ปี</string>
     <string name="ageYears">%d ปี</string>
 
     <!-- TeacherFragment -->
-    <string name="rawBirthday">วันเกิดที่ยังแปรรูป</string>
+    <string name="rawBirthday">วันเกิดดิบ</string>
     <string name="birthday">วันเกิด</string>
-    <string name="deathDate">วันตาย</string>
+    <string name="deathDate">วันเสียชีวิตโดยประมาณ</string>
     <string name="retireDate">วันเกษียณอายุราชการ</string>
     <string name="ageOneMonth">1 เดือน</string>
     <string name="ageMonths">%d เดือน</string>
@@ -78,10 +78,10 @@
     <string name="age">อายุ</string>
     <string name="remainingLifetime">เวลาชีวิตที่เหลือ</string>
     <string name="remainingWorkTime">เวลาที่เหลือก่อนเกษียณอายุราชการ</string>
-    <string name="lifePercentage">ร้อยละของอายุ</string>
-    <string name="retirePercentage">ร้อยละของเวลาก่อนเกษียณอายุราชการ</string>
-    <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกับ</string>
-    <string name="image">รูป</string>
+    <string name="lifePercentage">เปอร์เซ็นต์ของอายุ</string>
+    <string name="retirePercentage">เปอร์เซ็นต์ของเวลาก่อนเกษียณอายุราชการ</string>
+    <string name="guildMasterWith">คุณครูที่ปรึกษาประจำชุมนุมร่วมกัน</string>
+    <string name="image">รูปภาพ</string>
 
     <!-- PersonFragment -->
     <string name="position">ตำแหน่ง</string>

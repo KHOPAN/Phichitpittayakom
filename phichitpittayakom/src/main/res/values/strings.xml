@@ -7,48 +7,48 @@
     <!-- PhichitpittayakomApplication -->
     <string name="title">Phichitpittayakom School</string>
     <string name="subtitle">Phichit Province</string>
-    <string name="searchStudentBy">Search student by</string>
+    <string name="searchStudentBy">Search students by</string>
     <string name="studentIdentifier">Student identifier</string>
     <string name="nationalIdentifier">National identifier</string>
-    <string name="nameParts">Name parts</string>
-    <string name="allStudent">All student</string>
-    <string name="allGuild">All guild</string>
-    <string name="allTeacher">All teacher</string>
+    <string name="nameParts">Names</string>
+    <string name="allStudent">All students</string>
+    <string name="allGuild">All guilds</string>
+    <string name="allTeacher">All teachers</string>
     <string name="managementAndPersonnel">Management and personnel</string>
     <string name="gallery">Gallery</string>
 
     <!-- SearchStudentActivity -->
-    <string name="searchStudentByStudentIdentifier">Search student by student identifier</string>
-    <string name="searchStudentByNationalIdentifier">Search student by national identifier</string>
-    <string name="searchStudentByNameParts">Search student by name parts</string>
+    <string name="searchStudentByStudentIdentifier">Search students by their identifier</string>
+    <string name="searchStudentByNationalIdentifier">Search students by their national identifier</string>
+    <string name="searchStudentByNameParts">Search students by their names</string>
     <string name="search">Search</string>
-    <string name="emptySearchField">Empty search field</string>
-    <string name="invalidStudentIdentifier">Invalid student identifier</string>
-    <string name="noSearchResult">No search result</string>
-    <string name="invalidNationalIdentifier">Invalid national identifier</string>
+    <string name="emptySearchField">The search field is empty</string>
+    <string name="invalidStudentIdentifier">The student identifier is invalid</string>
+    <string name="noSearchResult">No search results</string>
+    <string name="invalidNationalIdentifier">The national identifier is invalid</string>
 
     <!-- StudentFragment -->
-    <string name="foundOneSearchResult">Found 1 search result</string>
+    <string name="foundOneSearchResult">1 search result found</string>
     <string name="namePrefix">Name prefix</string>
     <string name="firstName">First name</string>
     <string name="middleName">Middle name</string>
     <string name="lastName">Last name</string>
-    <string name="gradeNumber">%d</string>
-    <string name="mathayomsuksa">Mathayomsuksa</string>
-    <string name="classRoomNumber">Class room number</string>
+    <string name="gradeNumber">M.%d</string>
+    <string name="mathayomsuksa">Class</string>
+    <string name="classRoomNumber">Room</string>
     <string name="number">Number</string>
     <string name="guild">Guild</string>
     <string name="guildMaster">Guild master</string>
     <string name="guildMasters">Guild masters</string>
 
     <!-- ListFragment -->
-    <string name="foundSearchResults">Found %d search results</string>
+    <string name="foundSearchResults">%d search results found</string>
 
     <!-- GuildFragment -->
-    <string name="guildIdentifier">Guild identifier</string>
-    <string name="guildName">Guild name</string>
+    <string name="guildIdentifier">Identifier</string>
+    <string name="guildName">Name</string>
     <string name="guildLocation">Location</string>
-    <string name="guildClass">Guild class</string>
+    <string name="guildClass">Class</string>
     <string name="subjectArea">Subject area</string>
     <string name="goal">Goal</string>
     <string name="goals">Goals</string>
@@ -63,25 +63,25 @@
     <string name="members">Members</string>
 
     <!-- TeacherActivity -->
-    <string name="ageOneYear">1 Year</string>
-    <string name="ageYears">%d Years</string>
+    <string name="ageOneYear">1 year</string>
+    <string name="ageYears">%d years</string>
 
     <!-- TeacherFragment -->
     <string name="rawBirthday">Raw birthday</string>
     <string name="birthday">Birthday</string>
-    <string name="deathDate">Death date</string>
-    <string name="retireDate">Retire date</string>
-    <string name="ageOneMonth">1 Month</string>
-    <string name="ageMonths">%d Months</string>
-    <string name="ageOneDay">1 Day</string>
-    <string name="ageDays">%d Days</string>
+    <string name="deathDate">Estimated date of death</string>
+    <string name="retireDate">Date of retirement</string>
+    <string name="ageOneMonth">1 month</string>
+    <string name="ageMonths">%d months</string>
+    <string name="ageOneDay">1 day</string>
+    <string name="ageDays">%d days</string>
     <string name="age">Age</string>
     <string name="remainingLifetime">Remaining lifetime</string>
-    <string name="remainingWorkTime">Remaining work time until retire</string>
+    <string name="remainingWorkTime">Remaining time until retirement</string>
     <string name="lifePercentage">Life percentage</string>
-    <string name="retirePercentage">Retire percentage</string>
-    <string name="guildMasterWith">Guild master with</string>
-    <string name="image">Image</string>
+    <string name="retirePercentage">Retirement percentage</string>
+    <string name="guildMasterWith">Guild masters with</string>
+    <string name="image">Photo</string>
 
     <!-- PersonFragment -->
     <string name="position">Position</string>
@@ -91,8 +91,8 @@
     <string name="email">Email address</string>
 
     <!-- AllGalleryActivity -->
-    <string name="oneImage">1 Image</string>
-    <string name="images">%d Images</string>
-    <string name="oneView">1 View</string>
-    <string name="views">%d Views</string>
+    <string name="oneImage">1 image</string>
+    <string name="images">%d images</string>
+    <string name="oneView">1 view</string>
+    <string name="views">%d views</string>
 </resources>
