@@ -89,7 +89,7 @@
     <string name="education">วุฒิการศึกษา</string>
     <string name="majors">วิชาเอก</string>
     <string name="phone">เบอร์โทรศัพท์</string>
-    <string name="email">อีเมล์</string>
+    <string name="email">อีเมล</string>
 
     <!-- AllGalleryActivity -->
     <string name="oneImage">1 รูป</string>
