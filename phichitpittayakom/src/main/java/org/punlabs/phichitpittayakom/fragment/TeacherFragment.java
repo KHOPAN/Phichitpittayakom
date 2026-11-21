@@ -105,7 +105,7 @@ public class TeacherFragment extends ContextedFragment {
 			builder.card().title(this.formatter.format(this.retireDate)).summary(this.getString(R.string.retireDate));
 			builder.separate();
 			this.ageView = builder.card().summary(this.getString(R.string.age)).cardView();
-			this.remainingView = builder.card().summary(this.getString(R.string.remainingLifeTime)).cardView();
+			this.remainingView = builder.card().summary(this.getString(R.string.remainingLifetime)).cardView();
 			this.retireRemainingView = builder.card().summary(this.getString(R.string.remainingWorkTime)).cardView();
 			builder.separate();
 			this.lifePercentageView = builder.card().summary(this.getString(R.string.lifePercentage)).cardView();
