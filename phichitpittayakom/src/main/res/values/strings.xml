@@ -28,7 +28,10 @@
     <string name="invalidNationalIdentifier">The national identifier is invalid</string>
 
     <!-- StudentFragment -->
-    <string name="foundOneSearchResult">1 search result found</string>
+    <plurals name="foundSearchResults">
+        <item quantity="one">1 search result found</item>
+        <item quantity="other">%d search results found</item>
+    </plurals>
     <string name="namePrefix">Name prefix</string>
     <string name="firstName">First name</string>
     <string name="middleName">Middle name</string>
@@ -40,9 +43,6 @@
     <string name="guild">Guild</string>
     <string name="guildMaster">Guild master</string>
     <string name="guildMasters">Guild masters</string>
-
-    <!-- ListFragment -->
-    <string name="foundSearchResults">%d search results found</string>
 
     <!-- GuildFragment -->
     <string name="guildIdentifier">Identifier</string>

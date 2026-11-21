@@ -57,7 +57,7 @@ public class ListFragment<T> extends ContextedFragment {
 		LinearLayout linearLayout = (LinearLayout) view;
 		linearLayout.setOrientation(LinearLayout.VERTICAL);
 		Separator separator = new Separator(this.context);
-		separator.setText(this.size == 1 ? this.getString(R.string.foundOneSearchResult) : this.getString(R.string.foundSearchResults, this.size));
+		separator.setText(this.resources.getQuantityString(R.plurals.foundSearchResults, this.size, this.size));
 		linearLayout.addView(separator);
 		RoundLinearLayout roundLinearLayout = new RoundLinearLayout(this.context);
 		roundLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));

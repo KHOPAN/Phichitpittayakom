@@ -48,7 +48,7 @@ public class StudentFragment extends ContextedFragment {
 		CardBuilder builder = new CardBuilder(linearLayout, this.context);
 
 		if(this.showResult) {
-			builder.separate(this.getString(R.string.foundOneSearchResult));
+			builder.separate(this.resources.getQuantityString(R.plurals.foundSearchResults, 1));
 		}
 
 		StudentFragment.buildName(builder, this.context, this.student.getName());

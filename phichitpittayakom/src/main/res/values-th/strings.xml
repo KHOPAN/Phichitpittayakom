@@ -28,7 +28,9 @@
     <string name="invalidNationalIdentifier">เลขบัตรประจำตัวประชาชนไม่ถูกต้อง</string>
 
     <!-- StudentFragment -->
-    <string name="foundOneSearchResult">แสดง 1 ผลการค้นหา</string>
+    <plurals name="foundSearchResults">
+        <item quantity="other">แสดง %d ผลการค้นหา</item>
+    </plurals>
     <string name="namePrefix">คำนำหน้าชื่อ</string>
     <string name="firstName">ชื่อ</string>
     <string name="middleName">ชื่อกลาง</string>
@@ -40,9 +42,6 @@
     <string name="guild">ชุมนุม</string>
     <string name="guildMaster">คุณครูที่ปรึกษาประจำชุมนุม</string>
     <string name="guildMasters">คุณครูที่ปรึกษาประจำชุมนุม</string>
-
-    <!-- ListFragment -->
-    <string name="foundSearchResults">แสดง %d ผลการค้นหา</string>
 
     <!-- GuildFragment -->
     <string name="guildIdentifier">รหัสชุมนุม</string>
