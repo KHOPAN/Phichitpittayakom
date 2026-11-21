@@ -7,8 +7,8 @@
         Name="Phichitpittayakom"
         TargetApi="21"
         TargetPackageName="com.sec.sesl.org.punlabs.phichitpittayakom"
-        VersionCode="3"
-        VersionName="1.2.0">
+        VersionCode="4"
+        VersionName="1.2.1">
         <Include RefName="SESL" />
         <Property
             Comment="Primary Color - Dummy"
