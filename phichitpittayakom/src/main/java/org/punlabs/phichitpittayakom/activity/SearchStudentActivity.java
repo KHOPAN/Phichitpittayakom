@@ -171,7 +171,7 @@ public class SearchStudentActivity extends AppCompatActivity implements IFragmen
 			GuildInfo guild = guildOptional.get();
 			this.setFragment(new StudentFragment(student, guild, true));
 		} catch(NumberFormatException ignored) {
-			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.invaildStudentIdentifier)));
+			this.setFragment(new SingleCenterTextFragment(this.getString(R.string.invalidStudentIdentifier)));
 		}
 	}
 
